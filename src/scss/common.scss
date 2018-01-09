@@ -1,0 +1,81 @@
+html,
+body,
+#app {
+    height: 100%;
+}
+body {
+}
+
+.page-footer {
+    display: none;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #eee;
+}
+@media screen and (max-width: 767px) {
+    .page-body {
+        position: absolute;
+        top: 64px;
+        left: 0;
+        bottom: 56px;
+        width: 100%;
+        overflow: auto;
+    }
+    .page-footer {
+        display: block;
+    }
+    .page-nav {
+        display: none;
+    }
+    .page-content {
+        left: 0 !important;
+    }
+}
+
+/* 待办事项 */
+.todo-list {
+    height: 400px;
+    margin-top: 50px;
+    overflow: hidden;
+}
+.todo-list:hover {
+    overflow-y: auto;
+}
+.todo-list .list-group-item.done{
+    color: #ccc;
+}
+.todo-list .label {
+    float: right;
+}
+.todo-list .done {
+    opacity: .4;
+}
+.todo-list-empty {
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+
+.col-timer {
+    margin-bottom: 64px;
+}
+.col-timer .tip {
+    color: #999;
+}
+.list-group {
+    border: 1px solid #999;
+    border-radius: 2px;
+}
+.list-group-item {
+    padding: 8px;
+    border-bottom: 1px solid #999;
+}
+.navbar-collapse-header {
+    display: none;
+}
+@media screen and (max-width: 767px) {
+
+
+}
