@@ -65,19 +65,18 @@
                         }
                         img.src = _this.resultSrc
                     }
-                    //读取文件内容
                     reader.readAsDataURL(files[0])
                 }
             },
             make() {
-                let canvas = document.getElementById("canvas")
+                let canvas = document.getElementById('canvas')
                 canvas.width = this.newWidth
                 canvas.height = this.newWidth
                 let ctx = canvas.getContext('2d')
                 ctx.width = this.originWidth
                 ctx.height = this.originHeight
 
-                let img = document.getElementById("img")
+                let img = document.getElementById('img')
                 ctx.drawImage(img, 0, 0, ctx.width, ctx.height, 0, 0, this.newWidth, this.newHeight)
             },
             sizeStr: function (size) {
