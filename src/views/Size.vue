@@ -29,6 +29,9 @@
 </template>
 
 <script>
+//    const FileSaver = require('file-saver')
+//    const FileSaver = window.FileSaver
+
     export default {
         data () {
             return {

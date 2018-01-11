@@ -17,9 +17,12 @@
             </ui-row>
             <ui-row>
                 <ul class="color-list" v-if="colors.length">
-                    <li class="item" v-for="color in colors">
+                    <li class="item clipboard-btn" v-for="color in colors" :data-clipboard-text="color">
                         <span class="color" :style="{'background-color': color}">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         {{ color }}
+                        <!--<button class="clipboard-btn" >-->
+                            <!---->
+                        <!--</button>-->
                     </li>
                 </ul>
             </ui-row>
@@ -29,11 +32,14 @@
             <h2>说明</h2>
             <p>1. 直接点击图片进行取色。</p>
             <p>2. 点击“列出所有颜色”按钮，自动列出图片上的所有颜色（当图片比较大时，该操作会比较慢，请耐心等待）</p>
+            <p>3. 点击颜色代码可直接将颜色代码复制到剪切板。</p>
         </article>
     </ui-page>
 </template>
 
 <script>
+    const Clipboard = window.Clipboard
+
     function int2hex(num) {
         let r = parseInt(num).toString(16)
         if (r.length === 1) {
@@ -62,20 +68,34 @@
                 colors: []
             }
         },
+        mounted() {
+            this.init()
+        },
+        destroyed() {
+            this.clipboard.destroy()
+        },
         methods: {
+            init() {
+                this.clipboard = new Clipboard('.clipboard-btn')
+                this.clipboard.on('success', function(e) {
+                    console.log('复制成功')
+                    e.clearSelection()
+                })
+
+                this.clipboard.on('error', function(e) {
+                    console.log('复制失败')
+                })
+            },
             fileChange(e) {
                 let _this = this
                 if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
                     alert('很遗憾，您浏览器版本太老了，无法使用我们的小工具 ！')
                     return
                 }
-                console.log('啦啦啊')
                 let files = e.target.files
                 if (files.length > 0) {
-                    console.log('啦啦')
                     let reader = new FileReader()
                     reader.onload = function (e) {
-                        console.log('啦啦2212')
                         _this.resultSrc = this.result
                     }
                     reader.readAsDataURL(files[0])
@@ -164,7 +184,16 @@
             display: inline-block;
             width: 120px;
             margin-bottom: 8px;
+            cursor: pointer;
         }
+        /*.clipboard-btn {*/
+            /*display: block;*/
+            /*width: 100%;*/
+            /*height: 100%;*/
+            /*background: none;*/
+            /*border: none;*/
+            /*outline: none;*/
+        /*}*/
         .color {
             display: inline-block;
             width: 24px;
