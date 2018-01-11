@@ -1,7 +1,7 @@
 <template>
     <ui-page name="about" title="关于">
         <div class="about-box">
-            <img class="logo" src="/static/img/logo.png">
+            <img class="logo" src="/static/img/logo.svg">
             <div class="version">图片处理工具 v1.1.0</div>
             <div class="copyright">© 2018 <a href="https://yunser.com">云设</a></div>
         </div>
@@ -23,6 +23,7 @@
     }
     .logo {
         display: block;
+        width: 64px;
         margin: 80px auto 16px auto;
     }
     .version {
