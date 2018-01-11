@@ -44,6 +44,7 @@
             }
         },
         mounted() {
+            document.title = this.title || this.page.title
         },
         methods: {
             toggle(flag) {

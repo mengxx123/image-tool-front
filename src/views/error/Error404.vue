@@ -1,13 +1,11 @@
 <template>
-    <div class="page-404">
-        <ui-header></ui-header>
-        <main class="page-body">
+    <ui-page name="404" title="页面找不到了">
+        <div class="about-box">
             <div class="container">
                 404
             </div>
-        </main>
-        <ui-footer></ui-footer>
-    </div>
+        </div>
+    </ui-page>
 </template>
 
 <script>

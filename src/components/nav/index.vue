@@ -2,13 +2,21 @@
     <nav class="page-nav">
         <ui-list>
             <ui-list-item title="图片压缩" to="/">
+                <ui-icon slot="left" value="grade"/>
             </ui-list-item>
-            <!--<ui-list-item title="番茄工作法" to="/tomato">-->
-            <!--</ui-list-item>-->
-            <!--<ui-list-item title="帮助" to="/help">-->
-            <!--</ui-list-item>-->
-            <!--<ui-list-item title="关于" to="/about">-->
-            <!--</ui-list-item>-->
+            <ui-list-item title="修改图片大小" to="/size">
+                <ui-icon slot="left" value="grade"/>
+            </ui-list-item>
+            <ui-list-item title="图片取色" to="/color">
+                <ui-icon slot="left" value="grade"/>
+            </ui-list-item>
+
+            <ui-list-item title="帮助" to="/help">
+                <ui-icon slot="left" value="send"/>
+            </ui-list-item>
+            <ui-list-item title="关于" to="/about">
+                <ui-icon slot="left" value="send"/>
+            </ui-list-item>
         </ui-list>
         <ui-list v-if="categories.length">
             <mu-sub-header>清单</mu-sub-header>

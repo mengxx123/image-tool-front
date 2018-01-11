@@ -1,8 +1,8 @@
 <template>
     <ui-page name="about" title="关于">
         <div class="about-box">
-            <img class="logo" src="/static/img/logo.jpg">
-            <div class="version">TODO v1.1.2</div>
+            <img class="logo" src="/static/img/logo.png">
+            <div class="version">图片处理工具 v1.1.0</div>
             <div class="copyright">© 2018 <a href="https://yunser.com">云设</a></div>
         </div>
     </ui-page>
