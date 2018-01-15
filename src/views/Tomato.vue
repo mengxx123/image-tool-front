@@ -1,5 +1,5 @@
 <template>
-    <ui-page name="tomato" title="番茄工作法">
+    <my-page name="tomato" title="番茄工作法">
         <div class="row">
             <div class="col-md-6 col-timer">
                 <div class="tip" v-if="showTip">夜深了，注意休息</div>
@@ -20,7 +20,7 @@
             <source src="/static/res/tip.mp3">
             <source src="WhiteChristmas.ogg">
         </audio>
-    </ui-page>
+    </my-page>
 </template>
 
 <script>

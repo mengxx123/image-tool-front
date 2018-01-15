@@ -6,6 +6,7 @@ const Compress = resolve => require(['@/views/Compress'], resolve)
 const Size = resolve => require(['@/views/Size'], resolve)
 const Color = resolve => require(['@/views/Color'], resolve)
 const Help = resolve => require(['@/views/Help'], resolve)
+const WaterMark = resolve => require(['@/views/WaterMark'], resolve)
 
 const Error404 = resolve => require(['@/views/error/Error404'], resolve)
 
@@ -19,6 +20,10 @@ let routes = [
     {
         path: '/size',
         component: Size
+    },
+    {
+        path: '/watermark',
+        component: WaterMark
     },
     {
         path: '/color',

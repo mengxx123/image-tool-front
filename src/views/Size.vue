@@ -1,5 +1,5 @@
 <template>
-    <ui-page name="tomato" title="修改图片大小">
+    <my-page title="修改图片大小">
         <ui-row>
             <ui-raised-button class="file-select-btn" label="选择图片" primary>
                 <input type="file" class="ui-file-button" accept="image/*" @change="fileChange($event)">
@@ -25,7 +25,7 @@
                 <canvas id="canvas"></canvas>
             </ui-row>
         </div>
-    </ui-page>
+    </my-page>
 </template>
 
 <script>

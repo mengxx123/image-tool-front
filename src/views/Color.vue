@@ -1,5 +1,5 @@
 <template>
-    <ui-page name="about" title="图片取色器">
+    <my-page title="图片取色器">
         <div class="form">
             <ui-raised-button class="file-select-btn" label="选择图片" primary>
                 <input type="file" class="ui-file-button" accept="image/*" @change="fileChange($event)">
@@ -34,7 +34,7 @@
             <p>2. 点击“列出所有颜色”按钮，自动列出图片上的所有颜色（当图片比较大时，该操作会比较慢，请耐心等待）</p>
             <p>3. 点击颜色代码可直接将颜色代码复制到剪切板。</p>
         </article>
-    </ui-page>
+    </my-page>
 </template>
 
 <script>
@@ -76,6 +76,23 @@
         },
         methods: {
             init() {
+                // drop
+                document.addEventListener('dragenter', function(event) {
+                    console.log(1)
+                }, false)
+                document.addEventListener('dragover', function(event) {
+                    console.log(2)
+                }, false)
+                document.addEventListener('drop', function(e) {
+                    e.preventDefault()
+//                    let file = e.dataTransfer.files.item(0)
+//                    console.log(file)
+                    return false
+                }, false)
+                document.addEventListener('dragend', function(event) {
+                    console.log(3)
+                }, false)
+                // copy to clipboard
                 this.clipboard = new Clipboard('.clipboard-btn')
                 this.clipboard.on('success', function(e) {
                     console.log('复制成功')

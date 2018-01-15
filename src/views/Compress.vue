@@ -1,5 +1,5 @@
 <template>
-    <ui-page name="todo" title="图片压缩">
+    <my-page title="图片压缩">
         <div>
             <!--<div class="setting">
                 <h2 class="setting-title">设置</h2>
@@ -24,7 +24,7 @@
                 <div>图片大小缩减了 <span class="percent">{{ result.percent }}%</span></div>
             </div>
         </div>
-    </ui-page>
+    </my-page>
 </template>
 
 <script>

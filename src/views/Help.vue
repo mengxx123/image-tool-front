@@ -1,5 +1,5 @@
 <template>
-    <ui-page title="帮助">
+    <my-page title="帮助">
         <article class="article">
             <h2>图片压缩</h2>
             <p>图片压缩工具是一个简单的在线图片压缩工具，在网页端实现压缩功能，不占用服务器资源。</p>
@@ -12,7 +12,7 @@
             <p>更多图片处理工具请访问 <a href="http://draw.yunser.com/" target="_blank">在线 PS</a> ，
                 支持图片剪裁、翻转、滤镜、画笔等功能。</p>
         </article>
-    </ui-page>
+    </my-page>
 </template>
 
 <script>
