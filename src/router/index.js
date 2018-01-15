@@ -6,7 +6,7 @@ const Compress = resolve => require(['@/views/Compress'], resolve)
 const Size = resolve => require(['@/views/Size'], resolve)
 const Color = resolve => require(['@/views/Color'], resolve)
 const Help = resolve => require(['@/views/Help'], resolve)
-const WaterMark = resolve => require(['@/views/WaterMark'], resolve)
+const WaterMark = resolve => require(['@/views/Watermark'], resolve)
 
 const Error404 = resolve => require(['@/views/error/Error404'], resolve)
 
