@@ -5,9 +5,9 @@ const About = resolve => require(['@/views/About'], resolve)
 const Compress = resolve => require(['@/views/Compress'], resolve)
 const Size = resolve => require(['@/views/Size'], resolve)
 const Color = resolve => require(['@/views/Color'], resolve)
-const Help = resolve => require(['@/views/Help'], resolve)
+const Format = resolve => require(['@/views/Format'], resolve)
 const WaterMark = resolve => require(['@/views/Watermark'], resolve)
-
+const Help = resolve => require(['@/views/Help'], resolve)
 const Error404 = resolve => require(['@/views/error/Error404'], resolve)
 
 Vue.use(Router)
@@ -24,6 +24,10 @@ let routes = [
     {
         path: '/watermark',
         component: WaterMark
+    },
+    {
+        path: '/format',
+        component: Format
     },
     {
         path: '/color',

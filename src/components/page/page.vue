@@ -15,6 +15,9 @@
                 <ui-list-item title="图片取色" to="/color">
                     <ui-icon slot="left" value="grade"/>
                 </ui-list-item>
+                <ui-list-item title="格式转换" to="/format">
+                    <ui-icon slot="left" value="grade"/>
+                </ui-list-item>
                 <ui-list-item title="帮助" to="/help">
                     <ui-icon slot="left" value="send"/>
                 </ui-list-item>

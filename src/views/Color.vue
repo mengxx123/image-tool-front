@@ -1,5 +1,5 @@
 <template>
-    <my-page title="图片取色器">
+    <my-page title="图片取色">
         <div class="form">
             <ui-raised-button class="file-select-btn" label="选择图片" primary>
                 <input type="file" class="ui-file-button" accept="image/*" @change="fileChange($event)">
