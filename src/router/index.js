@@ -11,7 +11,7 @@ const Format = resolve => require(['@/views/Format'], resolve)
 const FormatHelp = resolve => require(['@/views/FormatHelp'], resolve)
 const Watermark = resolve => require(['@/views/Watermark'], resolve)
 const IdCardWatermark = resolve => require(['@/views/IdCardWatermark'], resolve)
-const IdCardWaterMarkHelp = resolve => require(['@/views/IdCardWatermarkHelp'], resolve)
+const IdCardWatermarkHelp = resolve => require(['@/views/IdCardWatermarkHelp'], resolve)
 const Help = resolve => require(['@/views/Help'], resolve)
 const Error404 = resolve => require(['@/views/error/Error404'], resolve)
 
