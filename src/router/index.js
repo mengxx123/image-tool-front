@@ -9,9 +9,9 @@ const Color = resolve => require(['@/views/Color'], resolve)
 const ColorHelp = resolve => require(['@/views/ColorHelp'], resolve)
 const Format = resolve => require(['@/views/Format'], resolve)
 const FormatHelp = resolve => require(['@/views/FormatHelp'], resolve)
-const WaterMark = resolve => require(['@/views/Watermark'], resolve)
-const IdCardWaterMark = resolve => require(['@/views/IdCardWaterMark'], resolve)
-const IdCardWaterMarkHelp = resolve => require(['@/views/IdCardWaterMarkHelp'], resolve)
+const Watermark = resolve => require(['@/views/Watermark'], resolve)
+const IdCardWatermark = resolve => require(['@/views/IdCardWatermark'], resolve)
+const IdCardWaterMarkHelp = resolve => require(['@/views/IdCardWatermarkHelp'], resolve)
 const Help = resolve => require(['@/views/Help'], resolve)
 const Error404 = resolve => require(['@/views/error/Error404'], resolve)
 
@@ -32,15 +32,15 @@ let routes = [
     },
     {
         path: '/watermark',
-        component: WaterMark
+        component: Watermark
     },
     {
         path: '/watermark/idCard',
-        component: IdCardWaterMark
+        component: IdCardWatermark
     },
     {
         path: '/watermark/idCard/help',
-        component: IdCardWaterMarkHelp
+        component: IdCardWatermarkHelp
     },
     {
         path: '/format',
