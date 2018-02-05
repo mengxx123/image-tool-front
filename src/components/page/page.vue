@@ -1,5 +1,5 @@
 <template>
-    <ui-page :title="title || page.title" ref="page">
+    <ui-page :title="title" :page="page" :backable="backable" ref="page">
         <div slot="drawer">
             <ui-appbar title=""></ui-appbar>
             <ui-list @itemClick="toggle()">
@@ -10,6 +10,9 @@
                     <ui-icon slot="left" value="grade"/>
                 </ui-list-item>
                 <ui-list-item title="图片加水印" to="/watermark">
+                    <ui-icon slot="left" value="grade"/>
+                </ui-list-item>
+                <ui-list-item title="身份证水印" to="/watermark/idCard">
                     <ui-icon slot="left" value="grade"/>
                 </ui-list-item>
                 <ui-list-item title="图片取色" to="/color">

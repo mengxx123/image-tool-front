@@ -1,5 +1,5 @@
 <template>
-    <my-page title="图片压缩">
+    <my-page title="图片压缩" :page="page">
         <div>
             <!--<div class="setting">
                 <h2 class="setting-title">设置</h2>
@@ -36,7 +36,16 @@
                 originSrc: null,
                 newSrc: null,
                 minSize: 0,
-                result: null
+                result: null,
+                page: {
+                    menu: [
+                        {
+                            type: 'icon',
+                            icon: 'help',
+                            to: '/compress/help'
+                        }
+                    ]
+                }
             }
         },
         computed: {

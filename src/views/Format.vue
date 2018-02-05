@@ -1,5 +1,5 @@
 <template>
-    <my-page title="格式转化">
+    <my-page title="格式转化" :page="page">
         <ui-row>
             <ui-raised-button class="file-select-btn" label="选择图片" primary>
                 <input type="file" class="ui-file-button" accept="image/*" @change="fileChange($event)">
@@ -18,11 +18,6 @@
                 </div>
             </ui-row>
         </div>
-        <ui-article>
-            <h2>说明</h2>
-            <p>支持导入的图片格式有：png、jpg/jpeg、gif、svg 和 webp。</p>
-            <div>支持导出的图片格式有：png、jpg、webp。</div>
-        </ui-article>
     </my-page>
 </template>
 
@@ -33,7 +28,16 @@
         data () {
             return {
                 resultSrc: null,
-                result: false
+                result: false,
+                page: {
+                    menu: [
+                        {
+                            type: 'icon',
+                            icon: 'help',
+                            to: '/format/help'
+                        }
+                    ]
+                }
             }
         },
         computed: {

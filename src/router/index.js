@@ -3,10 +3,15 @@ import Router from 'vue-router'
 
 const About = resolve => require(['@/views/About'], resolve)
 const Compress = resolve => require(['@/views/Compress'], resolve)
+const CompressHelp = resolve => require(['@/views/CompressHelp'], resolve)
 const Size = resolve => require(['@/views/Size'], resolve)
 const Color = resolve => require(['@/views/Color'], resolve)
+const ColorHelp = resolve => require(['@/views/ColorHelp'], resolve)
 const Format = resolve => require(['@/views/Format'], resolve)
+const FormatHelp = resolve => require(['@/views/FormatHelp'], resolve)
 const WaterMark = resolve => require(['@/views/Watermark'], resolve)
+const IDCardWaterMark = resolve => require(['@/views/IDCardWaterMark'], resolve)
+const IDCardWaterMarkHelp = resolve => require(['@/views/IDCardWaterMarkHelp'], resolve)
 const Help = resolve => require(['@/views/Help'], resolve)
 const Error404 = resolve => require(['@/views/error/Error404'], resolve)
 
@@ -18,6 +23,10 @@ let routes = [
         component: Compress
     },
     {
+        path: '/compress/help',
+        component: CompressHelp
+    },
+    {
         path: '/size',
         component: Size
     },
@@ -26,12 +35,28 @@ let routes = [
         component: WaterMark
     },
     {
+        path: '/watermark/idCard',
+        component: IDCardWaterMark
+    },
+    {
+        path: '/watermark/idCard/help',
+        component: IDCardWaterMarkHelp
+    },
+    {
         path: '/format',
         component: Format
     },
     {
+        path: '/format/help',
+        component: FormatHelp
+    },
+    {
         path: '/color',
         component: Color
+    },
+    {
+        path: '/color/help',
+        component: ColorHelp
     },
     {
         path: '/about',
