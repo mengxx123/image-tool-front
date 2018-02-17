@@ -74,7 +74,7 @@
             make() {
                 let canvas = document.getElementById('canvas')
                 canvas.width = this.newWidth
-                canvas.height = this.newWidth
+                canvas.height = this.newHeight
                 let ctx = canvas.getContext('2d')
                 ctx.width = this.originWidth
                 ctx.height = this.originHeight
