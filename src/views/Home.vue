@@ -62,13 +62,13 @@
                         desc: '',
                         icon: '/static/img/logo.svg',
                         to: '/format'
+                    },
+                    {
+                        name: '图片分割',
+                        desc: '',
+                        icon: '/static/img/logo.svg',
+                        to: '/split'
                     }
-                    // {
-                    //     name: '图片分隔',
-                    //     desc: '',
-                    //     icon: '/static/img/logo.svg',
-                    //     to: '/split'
-                    // }
                 ]
             }
         },
@@ -91,6 +91,7 @@
 @import '../scss/var';
 
 .tool-list {
+    max-width: 840px;
     margin: 0 auto;
     @include clearfix;
     .list-item {

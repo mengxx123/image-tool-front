@@ -1,5 +1,5 @@
 <template>
-    <my-page title="图片圆角">
+    <my-page title="图片分割">
         <ui-row>
             <ui-raised-button class="file-select-btn" label="选择图片" primary>
                 <input type="file" class="ui-file-button" accept="image/*" @change="fileChange($event)">
@@ -7,11 +7,17 @@
         </ui-row>
         <div v-if="resultSrc">
             <ui-row>
-                <img id="img" :src="resultSrc">
+                <div class="img-box">
+                    <img id="img" :src="resultSrc">
+                    <canvas></canvas>
+                </div>
             </ui-row>
             <ui-row>
                 <div>
-                    <ui-text-field v-model.number="radius" label="圆角尺寸"/>
+                    <ui-text-field v-model.number="row" label="行"/>
+                </div>
+                <div>
+                    <ui-text-field v-model.number="column" label="列"/>
                 </div>
                 <div>
                     <ui-raised-button label="生成图片" secondary
@@ -19,7 +25,14 @@
                 </div>
             </ui-row>
             <ui-row>
-                <canvas id="canvas"></canvas>
+                <canvas id="canvas" style="display: none"></canvas>
+                <canvas id="canvas2" style="display: none"></canvas>
+                <div class="tip" v-if="results.length">暂不支持打包下载，请手动下载（下一版本将会支持）</div>
+                <ul class="result-list">
+                    <li class="item" v-for="img in results">
+                        <img :src="img">
+                    </li>
+                </ul>
             </ui-row>
         </div>
     </my-page>
@@ -29,42 +42,17 @@
     /* eslint-disable */
 //    const FileSaver = require('file-saver')
 //    const FileSaver = window.FileSaver
-    CanvasRenderingContext2D.prototype.roundRect =  
-            function (x, y, width, height, radius, fill, stroke) {  
-                if (typeof stroke == "undefined") {  
-                    stroke = true;  
-                }  
-                if (typeof radius === "undefined") {  
-                    radius = 5;  
-                }  
-                this.beginPath();  
-                this.moveTo(x + radius, y);  
-                this.lineTo(x + width - radius, y);  
-                this.quadraticCurveTo(x + width, y, x + width, y + radius);  
-                this.lineTo(x + width, y + height - radius);  
-                this.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);  
-                this.lineTo(x + radius, y + height);  
-                this.quadraticCurveTo(x, y + height, x, y + height - radius);  
-                this.lineTo(x, y + radius);  
-                this.quadraticCurveTo(x, y, x + radius, y);  
-                this.closePath();  
-                if (stroke) {  
-                    this.stroke();  
-                }  
-                if (fill) {  
-                    this.fill();  
-                }  
-            };  
-
     
     export default {
         data () {
             return {
-                radius: 10,
+                row: 2,
+                column: 3,
                 resultSrc: null,
                 newWidth: null,
                 newHeight: null,
-                result: false
+                result: false,
+                results: []
             }
         },
         computed: {
@@ -74,13 +62,21 @@
         },
         mounted() {
             this.init()
-            this.debug()
+            // this.debug()
         },
         methods: {
             init() {
             },
             debug() {
-                // this.resultSrc = '/static/img/compress.jpg'
+                this.resultSrc = '/static/img/compress.jpg'
+                this.$nextTick(() => {
+                    let img = document.getElementById('img')
+                    img.onload = () => {
+                        this.originWidth = img.width
+                        this.originHeight = img.height
+                        this.make()
+                    }
+                })
             },
             fileChange(e) {
                 let _this = this
@@ -111,11 +107,30 @@
                 ctx.width = this.originWidth
                 ctx.height = this.originHeight
 
-                
-                ctx.roundRect(0, 0, ctx.width, ctx.height, this.radius, true)  
-                ctx.globalCompositeOperation='source-in';  
+                let canvas2 = document.getElementById('canvas2')
+                let ctx2 = canvas2.getContext('2d')
+                let gridWidth = this.originWidth / this.column
+                let gridHeight = this.originHeight / this.row
+                canvas2.width = gridWidth
+                canvas2.height = gridHeight
+                ctx2.width = gridWidth
+                ctx2.height = gridHeight
 
                 ctx.drawImage(img, 0, 0, ctx.width, ctx.height, 0, 0, this.originWidth, this.originHeight)
+
+                this.results = []
+                for (let x = 0; x < this.column; x++) {
+                    for (let y = 0; y < this.row; y++) {
+                        let startX = x * gridWidth
+                        let startY = y * gridHeight
+                        if (x === 2 && y === 0) {
+                            }
+                            ctx2.drawImage(img, startX, startY, gridWidth, gridHeight, 0, 0, gridWidth, gridHeight)
+                            this.results.push(canvas2.toDataURL())
+                        // cxt.beginpath
+                    }
+                }
+                
             },
             sizeStr: function (size) {
                 var originSize = size / 1024
@@ -130,7 +145,10 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    .img-box {
+        position: relative;
+    }
     img {
         max-width: 300px;
     }
@@ -145,6 +163,21 @@
         color: #f00;
     }
     .file-select {
+        margin-bottom: 16px;
+    }
+    .result-list {
+        overflow: hidden;
+        .item {
+            float: left;
+            margin-right: 16px;
+            margin-bottom: 16px;
+        }
+        img {
+            border: 1px solid #eee;
+        }
+    }
+    .tip {
+        color: #999;
         margin-bottom: 16px;
     }
 </style>
