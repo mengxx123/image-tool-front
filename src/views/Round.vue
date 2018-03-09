@@ -1,43 +1,5 @@
 <template>
-    <my-page title="修改图片大小">
-        <!-- <ui-stepper :activeStep="activeStep" orientation="vertical">
-            <ui-step>
-                <ui-step-label>上传图片</ui-step-label>
-                <ui-step-content>
-                    <ui-raised-button class="file-select-btn" label="选择图片" primary>
-                        <input type="file" class="ui-file-button" accept="image/*" @change="fileChange($event)">
-                    </ui-raised-button>
-                    <ui-raised-button label="下一步" class="demo-step-button" @click="handleNext" primary/>
-                </ui-step-content>
-            </ui-step>
-            <ui-step>
-                <ui-step-label>
-                    创建一个群组
-                </ui-step-label>
-                <ui-step-content>
-                    <p>
-                    创建群组，50人左右，以18-25单身青年为主。。。。。
-                    </p>
-                    <ui-raised-button label="下一步" class="demo-step-button" @click="handleNext" primary/>
-                    <ui-flat-button label="上一步" class="demo-step-button" @click="handlePrev"/>
-                </ui-step-content>
-            </ui-step>
-            <ui-step>
-                <ui-step-label>
-                    宣传活动
-                </ui-step-label>
-                <ui-step-content>
-                    <p>
-                    多在群里发消息宣传宣传，有事没事多在群里唠唠嗑，确定的话就ok拉
-                    </p>
-                    <ui-raised-button label="完成" class="demo-step-button" @click="handleNext" primary/>
-                    <ui-flat-button label="上一步" class="demo-step-button" @click="handlePrev"/>
-                </ui-step-content>
-            </ui-step>
-        </ui-stepper>
-        <p v-if="finished">
-            都完成啦!<a href="javascript:;" @click="reset">点这里</a>可以重置
-        </p> -->
+    <my-page title="图片圆角">
         <ui-row>
             <ui-raised-button class="file-select-btn" label="选择图片" primary>
                 <input type="file" class="ui-file-button" accept="image/*" @change="fileChange($event)">
@@ -49,10 +11,7 @@
             </ui-row>
             <ui-row>
                 <div>
-                    <ui-text-field v-model.number="newWidth" hintText="宽"/>
-                </div>
-                <div>
-                    <ui-text-field v-model.number="newHeight" hintText="高"/>
+                    <ui-text-field v-model.number="radius" label="圆角尺寸"/>
                 </div>
                 <div>
                     <ui-raised-button label="生成图片" secondary
@@ -67,32 +26,61 @@
 </template>
 
 <script>
+    /* eslint-disable */
 //    const FileSaver = require('file-saver')
 //    const FileSaver = window.FileSaver
+    CanvasRenderingContext2D.prototype.roundRect =  
+            function (x, y, width, height, radius, fill, stroke) {  
+                if (typeof stroke == "undefined") {  
+                    stroke = true;  
+                }  
+                if (typeof radius === "undefined") {  
+                    radius = 5;  
+                }  
+                this.beginPath();  
+                this.moveTo(x + radius, y);  
+                this.lineTo(x + width - radius, y);  
+                this.quadraticCurveTo(x + width, y, x + width, y + radius);  
+                this.lineTo(x + width, y + height - radius);  
+                this.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);  
+                this.lineTo(x + radius, y + height);  
+                this.quadraticCurveTo(x, y + height, x, y + height - radius);  
+                this.lineTo(x, y + radius);  
+                this.quadraticCurveTo(x, y, x + radius, y);  
+                this.closePath();  
+                if (stroke) {  
+                    this.stroke();  
+                }  
+                if (fill) {  
+                    this.fill();  
+                }  
+            };  
 
+    
     export default {
         data () {
             return {
+                radius: 10,
                 resultSrc: null,
                 newWidth: null,
                 newHeight: null,
-                result: false,
-                activeStep: 0
+                result: false
             }
         },
         computed: {
             routeUrl: function () {
                 return '/' + this.$route.params.lang + '/home'
-            },
-            finished () {
-                return this.activeStep > 2
             }
         },
         mounted() {
             this.init()
+            this.debug()
         },
         methods: {
             init() {
+            },
+            debug() {
+                // this.resultSrc = '/static/img/compress.jpg'
             },
             fileChange(e) {
                 let _this = this
@@ -115,14 +103,21 @@
             },
             make() {
                 let canvas = document.getElementById('canvas')
-                canvas.width = this.newWidth
-                canvas.height = this.newHeight
+                let img = document.getElementById('img')
+
+                canvas.width = this.originWidth
+                canvas.height = this.originHeight
                 let ctx = canvas.getContext('2d')
                 ctx.width = this.originWidth
                 ctx.height = this.originHeight
 
-                let img = document.getElementById('img')
-                ctx.drawImage(img, 0, 0, ctx.width, ctx.height, 0, 0, this.newWidth, this.newHeight)
+                
+                ctx.roundRect(0, 0, ctx.width, ctx.height, this.radius, true)  
+                ctx.globalCompositeOperation='source-in';  
+
+                ctx.drawImage(img, 0, 0, ctx.width, ctx.height, 0, 0, this.originWidth, this.originHeight)
+                
+                
             },
             sizeStr: function (size) {
                 var originSize = size / 1024
@@ -132,15 +127,6 @@
                     originSize = Math.floor(originSize / 1024) + ' MB'
                 }
                 return originSize
-            },
-            handleNext () {
-                this.activeStep++
-            },
-            handlePrev () {
-                this.activeStep--
-            },
-            reset () {
-                this.activeStep = 0
             }
         }
     }

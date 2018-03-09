@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+const Home = resolve => require(['@/views/Home'], resolve)
 const About = resolve => require(['@/views/About'], resolve)
 const Compress = resolve => require(['@/views/Compress'], resolve)
 const CompressHelp = resolve => require(['@/views/CompressHelp'], resolve)
 const Size = resolve => require(['@/views/Size'], resolve)
+const Round = resolve => require(['@/views/Round'], resolve)
 const Color = resolve => require(['@/views/Color'], resolve)
 const ColorHelp = resolve => require(['@/views/ColorHelp'], resolve)
 const Format = resolve => require(['@/views/Format'], resolve)
@@ -20,6 +22,10 @@ Vue.use(Router)
 let routes = [
     {
         path: '/',
+        component: Home
+    },
+    {
+        path: '/compress',
         component: Compress
     },
     {
@@ -29,6 +35,10 @@ let routes = [
     {
         path: '/size',
         component: Size
+    },
+    {
+        path: '/round',
+        component: Round
     },
     {
         path: '/watermark',
