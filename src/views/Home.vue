@@ -66,7 +66,7 @@
                     {
                         name: '图片分割',
                         desc: '',
-                        icon: '/static/img/logo.svg',
+                        icon: '/static/img/split.svg',
                         to: '/split'
                     }
                 ]
