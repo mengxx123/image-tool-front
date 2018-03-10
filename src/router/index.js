@@ -16,6 +16,8 @@ const IdCardWatermark = resolve => require(['@/views/IdCardWatermark'], resolve)
 const IdCardWatermarkHelp = resolve => require(['@/views/IdCardWatermarkHelp'], resolve)
 const Split = resolve => require(['@/views/Split'], resolve)
 const SplitHelp = resolve => require(['@/views/SplitHelp'], resolve)
+const Join = resolve => require(['@/views/Join'], resolve)
+const JoinHelp = resolve => require(['@/views/JoinHelp'], resolve)
 const Help = resolve => require(['@/views/Help'], resolve)
 const Error404 = resolve => require(['@/views/error/Error404'], resolve)
 
@@ -77,6 +79,14 @@ let routes = [
     {
         path: '/split/help',
         component: SplitHelp
+    },
+    {
+        path: '/join',
+        component: Join
+    },
+    {
+        path: '/join/help',
+        component: JoinHelp
     },
     {
         path: '/about',

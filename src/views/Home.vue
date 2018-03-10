@@ -68,6 +68,12 @@
                         desc: '',
                         icon: '/static/img/split.svg',
                         to: '/split'
+                    },
+                    {
+                        name: '图片拼接',
+                        desc: '',
+                        icon: '/static/img/app-join.svg',
+                        to: '/join'
                     }
                 ]
             }
