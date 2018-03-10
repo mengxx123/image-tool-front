@@ -15,6 +15,7 @@ const Watermark = resolve => require(['@/views/Watermark'], resolve)
 const IdCardWatermark = resolve => require(['@/views/IdCardWatermark'], resolve)
 const IdCardWatermarkHelp = resolve => require(['@/views/IdCardWatermarkHelp'], resolve)
 const Split = resolve => require(['@/views/Split'], resolve)
+const SplitHelp = resolve => require(['@/views/SplitHelp'], resolve)
 const Help = resolve => require(['@/views/Help'], resolve)
 const Error404 = resolve => require(['@/views/error/Error404'], resolve)
 
@@ -72,6 +73,10 @@ let routes = [
     {
         path: '/split',
         component: Split
+    },
+    {
+        path: '/split/help',
+        component: SplitHelp
     },
     {
         path: '/about',

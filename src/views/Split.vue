@@ -1,5 +1,5 @@
 <template>
-    <my-page title="图片分割">
+    <my-page title="图片分割" :page="page">
         <ui-row>
             <ui-raised-button class="file-select-btn" label="选择图片" primary>
                 <input type="file" class="ui-file-button" accept="image/*" @change="fileChange($event)">
@@ -27,7 +27,7 @@
             <ui-row>
                 <canvas id="canvas" style="display: none"></canvas>
                 <canvas id="canvas2" style="display: none"></canvas>
-                <div class="tip" v-if="results.length">暂不支持打包下载，请手动下载（下一版本将会支持）</div>
+                <ui-raised-button label="下载图片(.zip)" @click="download" v-if="results.length" />
                 <ul class="result-list">
                     <li class="item" v-for="img in results">
                         <img :src="img">
@@ -42,17 +42,27 @@
     /* eslint-disable */
 //    const FileSaver = require('file-saver')
 //    const FileSaver = window.FileSaver
-    
+    import simpleZip from '@/util/zip'
+
     export default {
         data () {
             return {
-                row: 2,
+                row: 3,
                 column: 3,
                 resultSrc: null,
                 newWidth: null,
                 newHeight: null,
                 result: false,
-                results: []
+                results: [],
+                page: {
+                    menu: [
+                        {
+                            type: 'icon',
+                            icon: 'help',
+                            to: '/split/help'
+                        }
+                    ]
+                }
             }
         },
         computed: {
@@ -82,10 +92,8 @@
                 let _this = this
                 let files = e.target.files
                 if (files.length > 0) {
-                    console.log('啦啦')
                     let reader = new FileReader()
                     reader.onload = function (e) {
-                        console.log('啦啦2212')
                         _this.resultSrc = this.result
                         let img = new Image()
                         img.onload = function () {
@@ -124,13 +132,13 @@
                         let startX = x * gridWidth
                         let startY = y * gridHeight
                         if (x === 2 && y === 0) {
-                            }
-                            ctx2.drawImage(img, startX, startY, gridWidth, gridHeight, 0, 0, gridWidth, gridHeight)
-                            this.results.push(canvas2.toDataURL())
+                        }
+                        ctx2.clearRect(0, 0, gridWidth, gridHeight)
+                        ctx2.drawImage(img, startX, startY, gridWidth, gridHeight, 0, 0, gridWidth, gridHeight)
+                        this.results.push(canvas2.toDataURL())
                         // cxt.beginpath
                     }
                 }
-                
             },
             sizeStr: function (size) {
                 var originSize = size / 1024
@@ -140,6 +148,16 @@
                     originSize = Math.floor(originSize / 1024) + ' MB'
                 }
                 return originSize
+            },
+            download() {
+                let f = async () => {
+                    await simpleZip.init()
+                    for (let idx in this.results) {
+                        await simpleZip.addDataUrl(this.results[idx], idx + '.png')
+                    }
+                    simpleZip.download('云设图片分割工具.zip')
+                }
+                f()
             }
         }
     }
