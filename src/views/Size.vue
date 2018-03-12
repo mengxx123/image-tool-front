@@ -55,6 +55,9 @@
                     <ui-text-field v-model.number="newHeight" hintText="高"/>
                 </div>
                 <div>
+                    <ui-checkbox class="checkbox" v-model="constraintRatio" label="约束长宽比"/>
+                </div>
+                <div>
                     <ui-raised-button label="生成图片" secondary
                                       @click="make"/>
                 </div>
@@ -77,7 +80,8 @@
                 newWidth: null,
                 newHeight: null,
                 result: false,
-                activeStep: 0
+                activeStep: 0,
+                constraintRatio: true
             }
         },
         computed: {
@@ -102,11 +106,14 @@
                     let reader = new FileReader()
                     reader.onload = function (e) {
                         console.log('啦啦2212')
-                        _this.resultSrc = this.result
+                        _this.resultSrc = e.target.result
                         let img = new Image()
                         img.onload = function () {
                             _this.originWidth = img.width
                             _this.originHeight = img.height
+                            _this.newWidth = img.width
+                            _this.newHeight = img.height
+                            _this.result = false
                         }
                         img.src = _this.resultSrc
                     }
@@ -142,6 +149,24 @@
             reset () {
                 this.activeStep = 0
             }
+        },
+        watch: {
+            newWidth() {
+                if (this.constraintRatio) {
+                    this.newHeight = this.newWidth * this.originHeight / this.originWidth
+                }
+            },
+            newHeight() {
+                if (this.constraintRatio) {
+                    this.newWidth = this.newHeight * this.originWidth / this.originHeight
+                }
+            },
+            constraintRatio() {
+                if (this.constraintRatio) {
+                    this.newWidth = this.originWidth
+                    this.newHeight = this.originHeight
+                }
+            }
         }
     }
 </script>
@@ -149,6 +174,9 @@
 <style scoped>
     img {
         max-width: 300px;
+    }
+    canvas {
+        max-width: 100%;
     }
     .setting {
         padding: 16px;

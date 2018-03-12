@@ -9,6 +9,8 @@
  * Licensed under MIT license
  */
 
+// http://close-pixelate.desandro.com/
+
 /*jshint asi: true, browser: true, eqeqeq: true, forin: false, immed: false, newcap: true, noempty: true, strict: true, undef: true */
 
 ( function( window, undefined ) {

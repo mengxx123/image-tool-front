@@ -1,5 +1,5 @@
 <template>
-    <my-page title="关于">
+    <my-page title="关于" backable>
         <div class="about-box">
             <img class="logo" src="/static/img/logo.svg">
             <div class="version">图片处理工具 v1.1.0</div>
