@@ -74,6 +74,12 @@
                         desc: '',
                         icon: '/static/img/app-join.svg',
                         to: '/join'
+                    },
+                    {
+                        name: '马赛克',
+                        desc: '',
+                        icon: '/static/img/app-mosaic.svg',
+                        to: '/mosaic'
                     }
                 ]
             }
