@@ -13,15 +13,16 @@
                 <div>
                     <ui-text-field v-model.number="radius" label="圆角尺寸"/>
                 </div>
-                <div>
-                    <ui-raised-button label="生成图片" secondary
-                                      @click="make"/>
+                <div class="btns">
+                    <ui-raised-button class="btn" label="生成图片" secondary @click="make"/>
+                    <ui-raised-button class="btn" label="下载" @click="download" v-if="result"/>
                 </div>
             </ui-row>
             <ui-row>
                 <canvas id="canvas"></canvas>
             </ui-row>
         </div>
+        <saver @close="saverClose" v-if="saverVisible" :src="downloadSrc" />
     </my-page>
 </template>
 
@@ -64,7 +65,9 @@
                 resultSrc: null,
                 newWidth: null,
                 newHeight: null,
-                result: false
+                result: false,
+                saverVisible: false,
+                downloadSrc: ''
             }
         },
         computed: {
@@ -111,11 +114,12 @@
                 ctx.width = this.originWidth
                 ctx.height = this.originHeight
 
-                
+
                 ctx.roundRect(0, 0, ctx.width, ctx.height, this.radius, true)  
                 ctx.globalCompositeOperation='source-in';  
 
                 ctx.drawImage(img, 0, 0, ctx.width, ctx.height, 0, 0, this.originWidth, this.originHeight)
+                this.result = true
             },
             sizeStr: function (size) {
                 var originSize = size / 1024
@@ -125,14 +129,30 @@
                     originSize = Math.floor(originSize / 1024) + ' MB'
                 }
                 return originSize
+            },
+            saverClose() {
+                this.saverVisible = false
+            },
+            download() {
+                this.saverVisible = true
+                let canvas = document.getElementById('canvas')
+                this.downloadSrc = canvas.toDataURL('image/png', 1)
             }
         }
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     img {
         max-width: 300px;
+    }
+    canvas {
+        max-width: 100%;
+    }
+    .btns {
+        .btn {
+            margin-right: 8px;
+        }
     }
     .setting {
         padding: 16px;

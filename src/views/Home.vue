@@ -80,6 +80,12 @@
                         desc: '',
                         icon: '/static/img/placeholder.png',
                         to: '/temp'
+                    },
+                    {
+                        name: '马赛克',
+                        desc: '',
+                        icon: '/static/img/app-mosaic.svg',
+                        to: '/mosaic'
                     }
                 ]
             }
