@@ -74,6 +74,12 @@
                         desc: '',
                         icon: '/static/img/app-join.svg',
                         to: '/join'
+                    },
+                    {
+                        name: '占位图片',
+                        desc: '',
+                        icon: '/static/img/placeholder.png',
+                        to: '/temp'
                     }
                 ]
             }

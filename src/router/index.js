@@ -18,6 +18,8 @@ const Split = resolve => require(['@/views/Split'], resolve)
 const SplitHelp = resolve => require(['@/views/SplitHelp'], resolve)
 const Join = resolve => require(['@/views/Join'], resolve)
 const JoinHelp = resolve => require(['@/views/JoinHelp'], resolve)
+const Temp = resolve => require(['@/views/Temp'], resolve)
+const TempHelp = resolve => require(['@/views/TempHelp'], resolve)
 const Help = resolve => require(['@/views/Help'], resolve)
 const Error404 = resolve => require(['@/views/error/Error404'], resolve)
 
@@ -87,6 +89,14 @@ let routes = [
     {
         path: '/join/help',
         component: JoinHelp
+    },
+    {
+        path: '/temp',
+        component: Temp
+    },
+    {
+        path: '/temp/help',
+        component: TempHelp
     },
     {
         path: '/about',
