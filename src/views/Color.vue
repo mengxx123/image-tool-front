@@ -4,6 +4,10 @@
             <ui-raised-button class="file-select-btn" label="选择图片" primary>
                 <input type="file" class="ui-file-button" accept="image/*" @change="fileChange($event)">
             </ui-raised-button>
+            <div class="or">或</div>
+            <ui-text-field v-model="url" hintText="请输入图片网址" />
+            <br>
+            <ui-raised-button class="file-select-btn" label="加载地址" @click="loadUrl" />
             <ui-raised-button label="列出所有颜色" class="demo-raised-button" secondary
                               v-if="resultSrc"
                               @click="getColor"/>
@@ -59,6 +63,7 @@
                 resultSrc: '',
                 checkbox: true,
                 colors: [],
+                url: 'https://www.baidu.com/img/bd_logo1.png',
                 page: {
                     menu: [
                         {
@@ -104,6 +109,20 @@
                 this.clipboard.on('error', function(e) {
                     console.log('复制失败')
                 })
+                this.loadUrl()
+            },
+            loadUrl() {
+                let url = '/image/temp?url=' + this.url
+                // let url = '/version'
+                this.$http.get(url).then(
+                    response => {
+                        let data = response.data
+                        console.log(data)
+                        this.resultSrc = data
+                    },
+                    response => {
+                        console.log(response)
+                    })
             },
             fileChange(e) {
                 let _this = this
@@ -229,5 +248,8 @@
     }
     .checkbox {
         margin-top: 8px;
+    }
+    .or {
+        margin-top: 16px;
     }
 </style>

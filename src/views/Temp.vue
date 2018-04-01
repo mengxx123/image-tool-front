@@ -31,6 +31,7 @@
 </template>
 
 <script>
+    const Clipboard = window.Clipboard
 //    const FileSaver = require('file-saver')
 //    const FileSaver = window.FileSaver
 
