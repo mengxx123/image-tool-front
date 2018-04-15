@@ -1,5 +1,5 @@
 <template>
-    <my-page title="修改图片大小">
+    <my-page title="修改图片大小" :page="page">
         <!-- <ui-stepper :activeStep="activeStep" orientation="vertical">
             <ui-step>
                 <ui-step-label>上传图片</ui-step-label>
@@ -63,7 +63,8 @@
                 </div>
             </ui-row>
             <ui-row>
-                <canvas id="canvas"></canvas>
+                <canvas id="canvas" style="display: none"></canvas>
+                <img :src="resultImage" v-if="resultImage">
             </ui-row>
         </div>
     </my-page>
@@ -81,7 +82,13 @@
                 newHeight: null,
                 result: false,
                 activeStep: 0,
-                constraintRatio: true
+                constraintRatio: true,
+                isWebIntent: false,
+                resultImage: null,
+                page: {
+                    menu: [
+                    ]
+                }
             }
         },
         computed: {
@@ -103,6 +110,7 @@
                 if (!window.intent) {
                     return
                 }
+                this.isWebIntent = true
                 console.log(window.intent.data)
                 let data = window.intent.data
                 if (data instanceof Array) {
@@ -111,6 +119,13 @@
                 } else {
                     this.resultSrc = data
                 }
+            },
+            finish() {
+                window.intent.postResult(this.resultSrc)
+                setTimeout(() => {
+                    let owner = window.opener || window.parent
+                    owner.window.close()
+                }, 100)
             },
             fileChange(e) {
                 let _this = this
@@ -144,6 +159,17 @@
 
                 let img = document.getElementById('img')
                 ctx.drawImage(img, 0, 0, ctx.width, ctx.height, 0, 0, this.newWidth, this.newHeight)
+                this.resultImage = canvas.toDataURL('image/png') // TODO
+
+                if (this.isWebIntent) {
+                    console.log('添加菜单')
+                    this.page.menu.push({
+                        type: 'icon',
+                        icon: 'check',
+                        click: this.finish,
+                        title: '完成'
+                    })
+                }
             },
             sizeStr: function (size) {
                 var originSize = size / 1024
