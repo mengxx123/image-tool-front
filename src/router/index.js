@@ -22,6 +22,8 @@ const Temp = resolve => require(['@/views/Temp'], resolve)
 const TempHelp = resolve => require(['@/views/TempHelp'], resolve)
 const Mosaic = resolve => require(['@/views/Mosaic'], resolve)
 const MosaicHelp = resolve => require(['@/views/MosaicHelp'], resolve)
+const Base64 = resolve => require(['@/views/Base64'], resolve)
+const Base64Help = resolve => require(['@/views/Base64Help'], resolve)
 const Help = resolve => require(['@/views/Help'], resolve)
 const Error404 = resolve => require(['@/views/error/Error404'], resolve)
 
@@ -107,6 +109,14 @@ let routes = [
     {
         path: '/mosaic/help',
         component: MosaicHelp
+    },
+    {
+        path: '/base64',
+        component: Base64
+    },
+    {
+        path: '/base64/help',
+        component: Base64Help
     },
     {
         path: '/about',

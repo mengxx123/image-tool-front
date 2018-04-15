@@ -86,6 +86,12 @@
                         desc: '',
                         icon: '/static/img/app-mosaic.svg',
                         to: '/mosaic'
+                    },
+                    {
+                        name: '图片⇆Base64',
+                        desc: 'Base64图片编码解码',
+                        icon: '/static/img/logo.svg',
+                        to: '/base64'
                     }
                 ]
             }

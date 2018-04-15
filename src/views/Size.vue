@@ -97,6 +97,20 @@
         },
         methods: {
             init() {
+                this.initWebIntents()
+            },
+            initWebIntents() {
+                if (!window.intent) {
+                    return
+                }
+                console.log(window.intent.data)
+                let data = window.intent.data
+                if (data instanceof Array) {
+                    // TODO
+                    this.resultSrc = data[0].url
+                } else {
+                    this.resultSrc = data
+                }
             },
             fileChange(e) {
                 let _this = this
