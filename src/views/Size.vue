@@ -121,7 +121,7 @@
                 }
             },
             finish() {
-                window.intent.postResult(this.resultSrc)
+                window.intent.postResult(this.resultImage)
                 setTimeout(() => {
                     let owner = window.opener || window.parent
                     owner.window.close()
