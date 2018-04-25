@@ -4,13 +4,10 @@ import router from './router'
 import './scss/main.scss'
 import ui from './components/index'
 import storage from './util/storage'
-import YunserUI from 'yunser-ui-vue'
-import 'yunser-ui-vue/dist/yunser-ui.css'
 import http from '@/util/http'
 
 Vue.config.productionTip = false
 
-Vue.use(YunserUI)
 Vue.use(ui)
 
 Vue.prototype.$storage = storage

@@ -1,16 +1,11 @@
 <template>
     <my-page title="马赛克" :page="page">
-        <ui-row>
-            <ui-raised-button class="file-select-btn" label="选择图片" primary>
-                <input type="file" class="ui-file-button" accept="image/*" @change="fileChange($event)">
-            </ui-raised-button>
-        </ui-row>
-
         <!--<div class="thumb">-->
             <!--<img src="/static/img/2.jpg" id="dolly1" />-->
         <!--</div>-->
-
-
+        <div class="empty-box" v-if="!resultSrc">
+            <div class="text">请选择图片进行编辑</div>
+        </div>
         <div v-if="resultSrc">
             <ui-row>
                 <ui-select-field v-model="shape" label="样式">
@@ -30,8 +25,7 @@
 </template>
 
 <script>
-//    const FileSaver = require('file-saver')
-//    const FileSaver = window.FileSaver
+    const Intent = window.Intent
 
     export default {
         data () {
@@ -48,6 +42,12 @@
                 isWebIntent: false,
                 page: {
                     menu: [
+                        {
+                            type: 'icon',
+                            icon: 'all_inclusive',
+                            click: this.link,
+                            title: '用其他应用打开'
+                        }
                     ]
                 }
             }
@@ -94,6 +94,25 @@
                     this.loadDataUrl(data)
                 }
             },
+            link() {
+                let canvas = document.getElementById('img')
+                let dataUrl
+                if (canvas) {
+                    dataUrl = canvas.toDataURL('image/png', 1)
+                }
+
+                let intent = new Intent({
+                    action: 'http://webintent.yunser.com/?',
+                    type: 'image/*',
+                    data: dataUrl
+                })
+                navigator.startActivity(intent, data => {
+                    console.log('成功')
+                    this.loadDataUrl(data)
+                }, data => {
+                    console.log('失败')
+                })
+            },
             finish() {
                 let canvas = document.getElementById('img')
                 let dataUrl = canvas.toDataURL('image/png', 1)
@@ -126,16 +145,6 @@
                         })
                     }
                 }, 500)
-            },
-            fileChange(e) {
-                let files = e.target.files
-                if (files.length > 0) {
-                    let reader = new FileReader()
-                    reader.onload = e => {
-                        this.loadDataUrl(e.target.result)
-                    }
-                    reader.readAsDataURL(files[0])
-                }
             },
             sizeStr: function (size) {
                 var originSize = size / 1024

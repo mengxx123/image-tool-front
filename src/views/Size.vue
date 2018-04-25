@@ -1,48 +1,8 @@
 <template>
     <my-page title="修改图片大小" :page="page">
-        <!-- <ui-stepper :activeStep="activeStep" orientation="vertical">
-            <ui-step>
-                <ui-step-label>上传图片</ui-step-label>
-                <ui-step-content>
-                    <ui-raised-button class="file-select-btn" label="选择图片" primary>
-                        <input type="file" class="ui-file-button" accept="image/*" @change="fileChange($event)">
-                    </ui-raised-button>
-                    <ui-raised-button label="下一步" class="demo-step-button" @click="handleNext" primary/>
-                </ui-step-content>
-            </ui-step>
-            <ui-step>
-                <ui-step-label>
-                    创建一个群组
-                </ui-step-label>
-                <ui-step-content>
-                    <p>
-                    创建群组，50人左右，以18-25单身青年为主。。。。。
-                    </p>
-                    <ui-raised-button label="下一步" class="demo-step-button" @click="handleNext" primary/>
-                    <ui-flat-button label="上一步" class="demo-step-button" @click="handlePrev"/>
-                </ui-step-content>
-            </ui-step>
-            <ui-step>
-                <ui-step-label>
-                    宣传活动
-                </ui-step-label>
-                <ui-step-content>
-                    <p>
-                    多在群里发消息宣传宣传，有事没事多在群里唠唠嗑，确定的话就ok拉
-                    </p>
-                    <ui-raised-button label="完成" class="demo-step-button" @click="handleNext" primary/>
-                    <ui-flat-button label="上一步" class="demo-step-button" @click="handlePrev"/>
-                </ui-step-content>
-            </ui-step>
-        </ui-stepper>
-        <p v-if="finished">
-            都完成啦!<a href="javascript:;" @click="reset">点这里</a>可以重置
-        </p> -->
-        <ui-row>
-            <ui-raised-button class="file-select-btn" label="选择图片" primary>
-                <input type="file" class="ui-file-button" accept="image/*" @change="fileChange($event)">
-            </ui-raised-button>
-        </ui-row>
+        <div class="empty-box" v-if="!resultSrc">
+            <div class="text">请选择图片进行编辑</div>
+        </div>
         <div v-if="resultSrc">
             <ui-row>
                 <img id="img" :src="resultSrc">
@@ -71,8 +31,7 @@
 </template>
 
 <script>
-//    const FileSaver = require('file-saver')
-//    const FileSaver = window.FileSaver
+   const Intent = window.Intent
 
     export default {
         data () {
@@ -87,6 +46,12 @@
                 resultImage: null,
                 page: {
                     menu: [
+                        {
+                            type: 'icon',
+                            icon: 'all_inclusive',
+                            click: this.link,
+                            title: '用其他应用打开'
+                        }
                     ]
                 }
             }
@@ -126,16 +91,6 @@
                     let owner = window.opener || window.parent
                     owner.window.close()
                 }, 100)
-            },
-            fileChange(e) {
-                let files = e.target.files
-                if (files.length > 0) {
-                    let reader = new FileReader()
-                    reader.onload = e => {
-                        this.loadDataUrl(e.target.result)
-                    }
-                    reader.readAsDataURL(files[0])
-                }
             },
             loadDataUrl(dataUrl) {
                 this.resultSrc = dataUrl
@@ -189,6 +144,19 @@
             },
             reset () {
                 this.activeStep = 0
+            },
+            link() {
+                let intent = new Intent({
+                    action: 'http://webintent.yunser.com/?',
+                    type: 'image/*',
+                    data: this.resultImage
+                })
+                navigator.startActivity(intent, data => {
+                    console.log('成功')
+                    this.loadDataUrl(data)
+                }, data => {
+                    console.log('失败')
+                })
             }
         },
         watch: {

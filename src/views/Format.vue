@@ -1,10 +1,8 @@
 <template>
     <my-page title="格式转化" :page="page">
-        <ui-row>
-            <ui-raised-button class="file-select-btn" label="选择图片" primary>
-                <input type="file" class="ui-file-button" accept="image/*" @change="fileChange($event)">
-            </ui-raised-button>
-        </ui-row>
+        <div class="empty-box" v-if="!resultSrc">
+            <div class="text">请选择图片进行编辑</div>
+        </div>
         <div v-if="resultSrc">
             <ui-row>
                 <img id="img" :src="resultSrc" style="display: none">
@@ -22,6 +20,7 @@
 </template>
 
 <script>
+    const Intent = window.Intent
     const saveAs = window.saveAs
 
     export default {
@@ -31,6 +30,12 @@
                 result: false,
                 page: {
                     menu: [
+                        {
+                            type: 'icon',
+                            icon: 'all_inclusive',
+                            click: this.link,
+                            title: '用其他应用打开'
+                        },
                         {
                             type: 'icon',
                             icon: 'help',
@@ -51,25 +56,28 @@
         methods: {
             init() {
             },
-            fileChange(e) {
-                let _this = this
-                let files = e.target.files
-                if (files.length > 0) {
-                    console.log('啦啦')
-                    let reader = new FileReader()
-                    reader.onload = function (e) {
-                        console.log('啦啦2212')
-                        _this.resultSrc = this.result
-                        let img = new Image()
-                        img.onload = function () {
-                            _this.originWidth = img.width
-                            _this.originHeight = img.height
-                            _this.make()
-                        }
-                        img.src = _this.resultSrc
-                    }
-                    reader.readAsDataURL(files[0])
+            link() {
+                let intent = new Intent({
+                    action: 'http://webintent.yunser.com/?',
+                    type: 'image/*',
+                    data: this.content
+                })
+                navigator.startActivity(intent, data => {
+                    console.log('成功')
+                    this.loadDataUrl(data)
+                }, data => {
+                    console.log('失败')
+                })
+            },
+            loadDataUrl(dataUrl) {
+                this.resultSrc = dataUrl
+                let img = new Image()
+                img.onload = () => {
+                    this.originWidth = img.width
+                    this.originHeight = img.height
+                    this.make()
                 }
+                img.src = this.resultSrc
             },
             make() {
                 let canvas = document.getElementById('canvas')
