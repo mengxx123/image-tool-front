@@ -92,6 +92,12 @@
                         desc: 'Base64图片编码解码',
                         icon: '/static/img/logo.svg',
                         to: '/base64'
+                    },
+                    {
+                        name: '故障风格文字',
+                        desc: '抖音风格的文字生成器',
+                        icon: '/static/img/logo.svg',
+                        to: '/glitch'
                     }
                 ]
             }
