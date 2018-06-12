@@ -16,6 +16,7 @@
                 </div>
             </ui-row>
         </div>
+        <image-uploader @data="onData" />
     </my-page>
 </template>
 
@@ -68,6 +69,9 @@
                 }, data => {
                     console.log('失败')
                 })
+            },
+            onData(data) {
+                this.loadDataUrl(data)
             },
             loadDataUrl(dataUrl) {
                 this.resultSrc = dataUrl

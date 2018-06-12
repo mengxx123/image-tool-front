@@ -21,6 +21,7 @@
             <ui-raised-button class="btn" label="下载" @click="download" />
         </div>
         <saver @close="saverClose" v-if="saverVisible" :src="downloadSrc" />
+        <image-uploader @data="onData" />
     </my-page>
 </template>
 
@@ -121,6 +122,9 @@
                     let owner = window.opener || window.parent
                     owner.window.close()
                 }, 100)
+            },
+            onData(data) {
+                this.loadDataUrl(data)
             },
             loadDataUrl(dataUrl) {
                 this.resultSrc = dataUrl

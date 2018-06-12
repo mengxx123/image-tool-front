@@ -36,6 +36,7 @@
     export default {
         data () {
             return {
+                embed: false,
                 options: {
                     text: 'HELLO WORLD',
                     type: 'png',
@@ -76,11 +77,13 @@
         },
         methods: {
             init() {
+                let isInFrame = window.self !== window.top
+                this.embed = this.$route.query.embed === 'true' && isInFrame
+                this.embed = true
+
                 let _this = this
 
                 var dytext;
-                
-
                 dytext=new DYText({
                     word: '2121',
                     color:'white',
