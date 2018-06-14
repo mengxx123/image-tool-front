@@ -76,10 +76,28 @@
                         to: '/join'
                     },
                     {
+                        name: '占位图片',
+                        desc: '',
+                        icon: '/static/img/placeholder.png',
+                        to: '/temp'
+                    },
+                    {
                         name: '马赛克',
                         desc: '',
                         icon: '/static/img/app-mosaic.svg',
                         to: '/mosaic'
+                    },
+                    {
+                        name: '图片⇆Base64',
+                        desc: 'Base64图片编码解码',
+                        icon: '/static/img/logo.svg',
+                        to: '/base64'
+                    },
+                    {
+                        name: '故障风格文字',
+                        desc: '抖音风格的文字生成器',
+                        icon: '/static/img/logo.svg',
+                        to: '/glitch'
                     }
                 ]
             }

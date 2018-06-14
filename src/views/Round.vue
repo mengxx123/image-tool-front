@@ -1,17 +1,17 @@
 <template>
     <my-page title="图片圆角">
-        <ui-row>
+        <!-- <ui-row>
             <ui-raised-button class="file-select-btn" label="选择图片" primary>
                 <input type="file" class="ui-file-button" accept="image/*" @change="fileChange($event)">
             </ui-raised-button>
-        </ui-row>
+        </ui-row> -->
         <div v-if="resultSrc">
             <ui-row>
                 <img id="img" :src="resultSrc">
             </ui-row>
             <ui-row>
                 <div>
-                    <ui-text-field v-model.number="radius" label="圆角尺寸"/>
+                    <ui-text-field v-model.number="radius" type="number" label="圆角尺寸"/>
                 </div>
                 <div class="btns">
                     <ui-raised-button class="btn" label="生成图片" secondary @click="make"/>
@@ -23,6 +23,7 @@
             </ui-row>
         </div>
         <saver @close="saverClose" v-if="saverVisible" :src="downloadSrc" />
+        <image-uploader v-if="embed" @data="onData" />
     </my-page>
 </template>
 
@@ -58,9 +59,11 @@
             };  
 
     
+    
     export default {
         data () {
             return {
+                embed: true,
                 radius: 10,
                 resultSrc: null,
                 newWidth: null,
@@ -77,13 +80,28 @@
         },
         mounted() {
             this.init()
-            this.debug()
+            // this.debug()
         },
         methods: {
             init() {
+                let isInFrame = window.self !== window.top
+                this.embed = this.$route.query.embed === 'true' && isInFrame
+                this.embed = true
             },
             debug() {
                 // this.resultSrc = '/static/img/compress.jpg'
+            },
+            onData(data) {
+                this.dealData(data)  
+            },
+            dealData(data) {
+                this.resultSrc = data
+                let img = new Image()
+                img.onload = () => {
+                    this.originWidth = img.width
+                    this.originHeight = img.height
+                }
+                img.src = this.resultSrc
             },
             fileChange(e) {
                 let _this = this

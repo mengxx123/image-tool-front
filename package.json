@@ -11,12 +11,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "file-saver": "^1.3.3",
-    "module": "^1.2.5",
-    "vue": "^2.5.2",
-    "vue-router": "^3.0.1",
-    "vue-server-renderer": "^2.5.9",
-    "yunser-ui-vue": "0.1.25"
+    "axios": "^0.18.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

@@ -46,3 +46,13 @@
         }
     }
 }
+.empty-box {
+    padding: 80px;
+    text-align: center;
+}
+.float-button {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 10000;
+}

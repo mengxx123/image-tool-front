@@ -18,8 +18,13 @@ const Split = resolve => require(['@/views/Split'], resolve)
 const SplitHelp = resolve => require(['@/views/SplitHelp'], resolve)
 const Join = resolve => require(['@/views/Join'], resolve)
 const JoinHelp = resolve => require(['@/views/JoinHelp'], resolve)
+const Temp = resolve => require(['@/views/Temp'], resolve)
+const TempHelp = resolve => require(['@/views/TempHelp'], resolve)
 const Mosaic = resolve => require(['@/views/Mosaic'], resolve)
 const MosaicHelp = resolve => require(['@/views/MosaicHelp'], resolve)
+const Base64 = resolve => require(['@/views/Base64'], resolve)
+const Base64Help = resolve => require(['@/views/Base64Help'], resolve)
+const Glitch = resolve => require(['@/views/Glitch'], resolve)
 const Help = resolve => require(['@/views/Help'], resolve)
 const Error404 = resolve => require(['@/views/error/Error404'], resolve)
 
@@ -91,12 +96,32 @@ let routes = [
         component: JoinHelp
     },
     {
+        path: '/temp',
+        component: Temp
+    },
+    {
+        path: '/temp/help',
+        component: TempHelp
+    },
+    {
         path: '/mosaic',
         component: Mosaic
     },
     {
         path: '/mosaic/help',
         component: MosaicHelp
+    },
+    {
+        path: '/base64',
+        component: Base64
+    },
+    {
+        path: '/base64/help',
+        component: Base64Help
+    },
+    {
+        path: '/glitch',
+        component: Glitch
     },
     {
         path: '/about',
