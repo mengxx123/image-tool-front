@@ -27,16 +27,19 @@
                 <img :src="resultImage" v-if="resultImage">
             </ui-row>
         </div>
-        <ui-float-button class="float-button" icon="file_upload" @click="uploadFile" title="上传图片"/>
+        <!--<ui-float-button class="float-button" icon="file_upload" @click="uploadFile" title="上传图片"/>-->
+        <image-uploader @data="onData" />
     </my-page>
 </template>
 
 <script>
+    /* eslint-disable */
    const Intent = window.Intent
 
     export default {
         data () {
             return {
+                data: [],
                 embed: true,
                 resultSrc: null,
                 newWidth: null,
@@ -110,6 +113,15 @@
                 img.src = this.resultSrc
             },
             make() {
+                let zip = new JSZip()
+                for (let i = 0; i < this.data.length; i++) {
+                    let item = this.data[i]
+                    zip.file(item.fileName, item.data.replace('data:image/png;base64,', ''));
+                }
+                zip.generateAsync({type:"blob"}).then(function(content) {
+                    saveAs(content, '下载.zip')
+                })
+                return
                 let canvas = document.getElementById('canvas')
                 canvas.width = this.newWidth
                 canvas.height = this.newHeight
@@ -163,10 +175,13 @@
                     console.log('失败')
                 })
             },
+            onData(data) {
+                this.data = data
+                console.log('数据', data)
+                this.loadDataUrl(data[0])
+            },
             uploadFile() {
                 let input = document.createElement('INPUT')
-                input.setAttribute('type', 'file')
-                input.setAttribute('accept', 'image/*')
                 input.addEventListener('change', e => {
                     let file = e.target.files[0]
                     let reader = new FileReader()
