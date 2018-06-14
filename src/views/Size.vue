@@ -1,12 +1,13 @@
 <template>
     <my-page title="修改图片大小" :page="page">
-        <div class="empty-box" v-if="!resultSrc">
-            <div class="text">请选择图片进行编辑</div>
+        <div class="empty-box" v-if="!resultVisible">
+            <div class="text">请选择图片进行编辑，支持批量操作</div>
         </div>
-        <div v-if="resultSrc">
-            <ui-row>
+        <div v-if="resultVisible">
+            <ui-row v-if="data.length === 1">
                 <img id="img" :src="resultSrc">
             </ui-row>
+            <div v-else>多张图片，暂不支持预览效果</div>
             <ui-row>
                 <div>
                     <ui-text-field v-model.number="newWidth" hintText="宽"/>
@@ -18,7 +19,7 @@
                     <ui-checkbox class="checkbox" v-model="constraintRatio" label="约束长宽比"/>
                 </div>
                 <div>
-                    <ui-raised-button label="生成图片" secondary
+                    <ui-raised-button label="下载图片" secondary
                                       @click="make"/>
                 </div>
             </ui-row>
@@ -44,7 +45,7 @@
                 resultSrc: null,
                 newWidth: null,
                 newHeight: null,
-                result: false,
+                resultVisible: false,
                 activeStep: 0,
                 constraintRatio: true,
                 isWebIntent: false,
@@ -112,11 +113,32 @@
                 }
                 img.src = this.resultSrc
             },
-            make() {
+            resizeImage(dataUrl) {
+                return new Promise((resolve,reject) => {
+                    let img = new Image()
+                    img.onload = () => {
+                        let canvas = document.getElementById('canvas')
+                        canvas.width = this.newWidth
+                        canvas.height = this.newHeight
+                        let ctx = canvas.getContext('2d')
+                        ctx.width = this.newWidth
+                        ctx.height = this.newHeight
+                        ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, this.newWidth, this.newHeight)
+                        resolve(canvas.toDataURL('image/png'))
+                    }
+                    img.src = dataUrl
+                })
+            },
+            async make() {
                 let zip = new JSZip()
                 for (let i = 0; i < this.data.length; i++) {
                     let item = this.data[i]
-                    zip.file(item.fileName, item.data.replace('data:image/png;base64,', ''));
+                    let dataUrl = await this.resizeImage(item.data)
+                    zip.file(item.fileName, dataUrl
+                        .replace('data:image/png;base64,', '')
+                        .replace('data:image/jpeg;base64,', '')
+                        .replace('data:image/gif;base64,', '')
+                        , {base64: true});
                 }
                 zip.generateAsync({type:"blob"}).then(function(content) {
                     saveAs(content, '下载.zip')
@@ -126,8 +148,8 @@
                 canvas.width = this.newWidth
                 canvas.height = this.newHeight
                 let ctx = canvas.getContext('2d')
-                ctx.width = this.originWidth
-                ctx.height = this.originHeight
+                ctx.width = this.newWidth
+                ctx.height = this.newHeight
 
                 let img = document.getElementById('img')
                 ctx.drawImage(img, 0, 0, ctx.width, ctx.height, 0, 0, this.newWidth, this.newHeight)
@@ -144,7 +166,7 @@
                     })
                 }
             },
-            sizeStr: function (size) {
+            sizeStr(size) {
                 var originSize = size / 1024
                 if (originSize < 1024) {
                     originSize = Math.floor(originSize) + ' KB'
@@ -176,9 +198,14 @@
                 })
             },
             onData(data) {
+                this.resultVisible = true
                 this.data = data
                 console.log('数据', data)
-                this.loadDataUrl(data[0])
+                if (data.length === 1) {
+                    this.loadDataUrl(data[0].data)
+                } else {
+                    this.constraintRatio = false
+                }
             },
             uploadFile() {
                 let input = document.createElement('INPUT')

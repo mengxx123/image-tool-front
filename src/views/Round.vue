@@ -5,6 +5,9 @@
                 <input type="file" class="ui-file-button" accept="image/*" @change="fileChange($event)">
             </ui-raised-button>
         </ui-row> -->
+        <div class="empty-box" v-if="!resultSrc">
+            <div class="text">请选择图片进行编辑</div>
+        </div>
         <div v-if="resultSrc">
             <ui-row>
                 <img id="img" :src="resultSrc">
@@ -14,15 +17,15 @@
                     <ui-text-field v-model.number="radius" type="number" label="圆角尺寸"/>
                 </div>
                 <div class="btns">
-                    <ui-raised-button class="btn" label="生成图片" secondary @click="make"/>
-                    <ui-raised-button class="btn" label="下载" @click="download" v-if="result"/>
+                    <!-- <ui-raised-button class="btn" label="生成图片" secondary @click="make"/> -->
+                    <ui-raised-button class="btn" label="下载" primary @click="download" v-if="result"/>
                 </div>
             </ui-row>
             <ui-row>
                 <canvas id="canvas"></canvas>
             </ui-row>
         </div>
-        <saver @close="saverClose" v-if="saverVisible" :src="downloadSrc" />
+        <saver :show.sync="saverVisible" :src="downloadSrc" />
         <image-uploader v-if="embed" @data="onData" />
     </my-page>
 </template>
@@ -92,7 +95,7 @@
                 // this.resultSrc = '/static/img/compress.jpg'
             },
             onData(data) {
-                this.dealData(data)  
+                this.dealData(data[0].data)
             },
             dealData(data) {
                 this.resultSrc = data
@@ -100,6 +103,7 @@
                 img.onload = () => {
                     this.originWidth = img.width
                     this.originHeight = img.height
+                    this.make()
                 }
                 img.src = this.resultSrc
             },
@@ -155,6 +159,11 @@
                 this.saverVisible = true
                 let canvas = document.getElementById('canvas')
                 this.downloadSrc = canvas.toDataURL('image/png', 1)
+            }
+        },
+        watch: {
+            radius() {
+                this.make()
             }
         }
     }

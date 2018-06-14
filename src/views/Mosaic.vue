@@ -20,7 +20,7 @@
             </ui-row>
             <ui-raised-button class="btn" label="下载" @click="download" />
         </div>
-        <saver @close="saverClose" v-if="saverVisible" :src="downloadSrc" />
+        <saver :show.sync="saverVisible" :src="downloadSrc" />
         <image-uploader @data="onData" />
     </my-page>
 </template>
@@ -124,7 +124,7 @@
                 }, 100)
             },
             onData(data) {
-                this.loadDataUrl(data)
+                this.loadDataUrl(data[0].data)
             },
             loadDataUrl(dataUrl) {
                 this.resultSrc = dataUrl

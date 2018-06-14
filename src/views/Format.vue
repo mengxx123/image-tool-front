@@ -71,7 +71,7 @@
                 })
             },
             onData(data) {
-                this.loadDataUrl(data)
+                this.loadDataUrl(data[0].data)
             },
             loadDataUrl(dataUrl) {
                 this.resultSrc = dataUrl

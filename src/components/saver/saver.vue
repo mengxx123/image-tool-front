@@ -1,10 +1,9 @@
 <template>
-    <ui-drawer class="drawer download-box" right :open="true" :docked="false" @close="toggle()">
+    <ui-drawer class="drawer download-box" right :open="show" :docked="false" @close="toggle()">
         <ui-appbar title="下载">
             <ui-icon-button icon="close" @click="close" slot="left" />
         </ui-appbar>
         <div class="body">
-
         </div>
         <canvas class="canvas" id="canvas" ref="canvas"></canvas>
         <ui-row class="btns">
@@ -30,6 +29,10 @@
             }
         },
         props: {
+            show: {
+                type: Boolean,
+                default: false
+            },
             src: {
                 type: String,
                 default: ''
@@ -53,10 +56,12 @@
                 img.src = this.src
             },
             toggle () {
-                this.$emit('close')
+                this.$emit('update:show', false)
+                // this.$emit('close')
             },
             close() {
-                this.$emit('close')
+                this.$emit('update:show', false)
+                // this.$emit('close')
             },
             downloadPng() {
                 let canvas = this.$refs.canvas
@@ -112,6 +117,11 @@
                     saveAs(file)
                 }
                 img.src = dataUrl
+            }
+        },
+        watch: {
+            src() {
+                this.init()
             }
         }
     }

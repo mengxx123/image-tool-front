@@ -35,7 +35,10 @@
                 }
                 let results = []
                 for (let i = 0; i < files.length; i++) {
-                    results.push(await this.getDataUrl(files[i]))
+                    results.push({
+                        fileName: files[i].name,
+                        data: await this.getDataUrl(files[i])
+                    })
                 }
                 console.log('返回')
                 this.$emit('data', results)
