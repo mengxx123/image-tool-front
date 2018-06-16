@@ -25,6 +25,7 @@ const MosaicHelp = resolve => require(['@/views/MosaicHelp'], resolve)
 const Base64 = resolve => require(['@/views/Base64'], resolve)
 const Base64Help = resolve => require(['@/views/Base64Help'], resolve)
 const Glitch = resolve => require(['@/views/Glitch'], resolve)
+const Blending = resolve => require(['@/views/Blending'], resolve)
 const Help = resolve => require(['@/views/Help'], resolve)
 const Error404 = resolve => require(['@/views/error/Error404'], resolve)
 
@@ -122,6 +123,10 @@ let routes = [
     {
         path: '/glitch',
         component: Glitch
+    },
+    {
+        path: '/blending',
+        component: Blending
     },
     {
         path: '/about',

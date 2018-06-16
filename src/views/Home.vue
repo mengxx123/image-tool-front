@@ -98,6 +98,12 @@
                         desc: '抖音风格的文字生成器',
                         icon: '/static/img/logo.svg',
                         to: '/glitch'
+                    },
+                    {
+                        name: '图像融合',
+                        desc: '可以把两张图片融合在一起',
+                        icon: '/static/img/logo.svg',
+                        to: '/blending'
                     }
                 ]
             }
