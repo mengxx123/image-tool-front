@@ -104,6 +104,12 @@
                         desc: '可以把两张图片融合在一起',
                         icon: '/static/img/logo.svg',
                         to: '/blending'
+                    },
+                    {
+                        name: '图像加边框',
+                        desc: '',
+                        icon: '/static/img/image_border.png',
+                        to: '/border'
                     }
                 ]
             }

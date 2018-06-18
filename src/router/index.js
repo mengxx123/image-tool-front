@@ -7,6 +7,7 @@ const Compress = resolve => require(['@/views/Compress'], resolve)
 const CompressHelp = resolve => require(['@/views/CompressHelp'], resolve)
 const Size = resolve => require(['@/views/Size'], resolve)
 const Round = resolve => require(['@/views/Round'], resolve)
+const Border = resolve => require(['@/views/Border'], resolve)
 const Color = resolve => require(['@/views/Color'], resolve)
 const ColorHelp = resolve => require(['@/views/ColorHelp'], resolve)
 const Format = resolve => require(['@/views/Format'], resolve)
@@ -51,6 +52,10 @@ let routes = [
     {
         path: '/round',
         component: Round
+    },
+    {
+        path: '/border',
+        component: Border
     },
     {
         path: '/watermark',
