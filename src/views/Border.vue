@@ -111,7 +111,7 @@
         },
         mounted() {
             this.init()
-            this.debug()
+            // this.debug()
         },
         methods: {
             toggle () {
