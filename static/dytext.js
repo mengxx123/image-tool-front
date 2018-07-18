@@ -201,7 +201,8 @@ DYText.prototype.drawBg=function(){
 
 
     ctxBg.fillStyle=this.colorBg;
-    ctxBg.fillRect(0,0,this.ctx.canvas.width,this.ctx.canvas.height);
+    ctxBg.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
+    // ctxBg.fillRect(0,0,this.ctx.canvas.width,this.ctx.canvas.height);
 
     var word=this.word,
         offset=this.offset,

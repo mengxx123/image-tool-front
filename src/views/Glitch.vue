@@ -1,8 +1,7 @@
 <template>
     <my-page title="抖音风格的文字生成器" :page="page">
-        建议先下载站酷高端黑字体安装到电脑再使用
-
-        <div id="preview"></div>
+        <div class="tip">建议先下载站酷高端黑字体安装到电脑再使用，电脑右键另存为保存图片。</div>
+        <div class="preview" id="preview"></div>
             <div id="edit">
             <div class="option">
                 <ui-text-field v-model="options.text" label="文字" />
@@ -87,7 +86,8 @@
                 dytext=new DYText({
                     word: '2121',
                     color:'white',
-                    colorBg:'#1F0D1C',
+                    colorBg:'#fff',
+                    // colorBg:'#1F0D1C',
                     colorLeft:'#00F5EB',
                     colorRight:'#FF0050',
                     dev: false,
@@ -180,5 +180,12 @@
     }
     .slider {
         width: 256px;
+    }
+    .preview {
+        background-color: #1F0D1C;
+    }
+    .tip {
+        margin-bottom: 16px;
+        color: #999;
     }
 </style>
