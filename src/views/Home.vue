@@ -24,49 +24,49 @@
                     {
                         name: '图片压缩',
                         desc: '',
-                        icon: '/static/img/compress.jpg',
+                        icon: '/static/img/image_compress.svg',
                         to: '/compress'
                     },
                     {
                         name: '修改图片大小',
                         desc: '',
-                        icon: '/static/img/resize.svg',
+                        icon: '/static/img/image_resize.svg',
                         to: '/size'
                     },
                     {
                         name: '图片圆角',
                         desc: '',
-                        icon: '/static/img/round.svg',
+                        icon: '/static/img/image_rounded_corner.svg',
                         to: '/round'
                     },
                     {
                         name: '图片加水印',
                         desc: '',
-                        icon: '/static/img/watermark.svg',
+                        icon: '/static/img/image_watermark.svg',
                         to: '/watermark'
                     },
                     {
                         name: '身份证水印',
                         desc: '',
-                        icon: '/static/img/watermark.svg',
+                        icon: '/static/img/id_card_watermark.svg',
                         to: '/watermark/idCard'
                     },
                     {
                         name: '图片取色',
                         desc: '',
-                        icon: '/static/img/straw.svg',
+                        icon: '/static/img/image_pick_up_color.svg',
                         to: '/color'
                     },
                     {
                         name: '格式转换',
                         desc: '',
-                        icon: '/static/img/logo.svg',
+                        icon: '/static/img/image_convert.svg',
                         to: '/format'
                     },
                     {
                         name: '图片分割',
                         desc: '',
-                        icon: '/static/img/split.svg',
+                        icon: '/static/img/image_split.svg',
                         to: '/split'
                     },
                     {
@@ -78,7 +78,7 @@
                     {
                         name: '占位图片',
                         desc: '',
-                        icon: '/static/img/placeholder.png',
+                        icon: '/static/img/image_placeholder.svg',
                         to: '/temp'
                     },
                     {
@@ -90,25 +90,25 @@
                     {
                         name: '图片⇆Base64',
                         desc: 'Base64图片编码解码',
-                        icon: '/static/img/logo.svg',
+                        icon: '/static/img/base64.svg',
                         to: '/base64'
                     },
                     {
                         name: '故障风格文字',
                         desc: '抖音风格的文字生成器',
-                        icon: '/static/img/logo.svg',
+                        icon: '/static/img/glitch.svg',
                         to: '/glitch'
                     },
                     {
                         name: '图像融合',
                         desc: '可以把两张图片融合在一起',
-                        icon: '/static/img/logo.svg',
+                        icon: '/static/img/image_blending.svg',
                         to: '/blending'
                     },
                     {
                         name: '图像加边框',
                         desc: '',
-                        icon: '/static/img/image_border.png',
+                        icon: '/static/img/image_border.svg',
                         to: '/border'
                     }
                 ]

@@ -1,7 +1,7 @@
 <template>
     <my-page title="关于" backable>
         <div class="about-box">
-            <img class="logo" src="/static/img/logo.svg">
+            <img class="logo" src="/static/img/image_tool.svg">
             <div class="version">图片处理工具 v1.1.0</div>
             <div class="copyright">© 2018 <a href="https://yunser.com">云设</a></div>
         </div>

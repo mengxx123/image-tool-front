@@ -1,7 +1,9 @@
 <template>
     <ui-page :title="title" :page="page" :backable="backable" ref="page">
         <div slot="drawer">
-            <ui-appbar title=""></ui-appbar>
+            <div class="header">
+                <img class="logo" src="/static/img/image_tool.svg">
+            </div>
             <ui-list @itemClick="toggle()">
                 <ui-list-item title="首页" to="/">
                     <ui-icon slot="left" value="home"/>
@@ -60,4 +62,13 @@
 </script>
 
 <style lang="scss" scoped>
+.header {
+    padding: 40px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.logo {
+    display: block;
+    width: 80px;
+    margin: 0 auto;
+}
 </style>
