@@ -5,6 +5,7 @@ import formItem from './formItem'
 import imageUploader from './image-uploader'
 // import colorPicker from './color-picker/dialog.vue'
 import colorPicker from './color-picker'
+import appList from './app-list'
 
 export default {
     install: function (Vue) {
@@ -14,5 +15,6 @@ export default {
         Vue.component('saver', saver)
         Vue.component('image-uploader', imageUploader)
         Vue.component('color-picker', colorPicker)
+        Vue.component('app-list', appList)
     }
 }

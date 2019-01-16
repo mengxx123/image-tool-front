@@ -8,10 +8,10 @@
                 <ui-list-item title="首页" to="/">
                     <ui-icon slot="left" value="home"/>
                 </ui-list-item>
-                <ui-list-item title="帮助" to="/help">
-                    <ui-icon slot="left" value="help"/>
+                <ui-list-item title="办公" href="https://work.yunser.com/" target="_blank">
+                    <ui-icon slot="left" value="folder"/>
                 </ui-list-item>
-                <ui-list-item title="关于" to="/about">
+                <ui-list-item title="帮助/关于" href="https://project.yunser.com/products/f1018b20e8f211e8aff245d55fdd8a72" target="_blank">
                     <ui-icon slot="left" value="info"/>
                 </ui-list-item>
             </ui-list>

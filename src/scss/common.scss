@@ -1,6 +1,13 @@
 @import "./var";
 @import "./color";
 
+.ui-page-body {
+    -webkit-overflow-scrolling : touch;
+}
+input,
+textarea {
+  -webkit-appearance: none;
+}
 .ui-file-button{
     position: absolute;
     left: 0;

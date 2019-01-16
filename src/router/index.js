@@ -2,32 +2,21 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 const Home = resolve => require(['@/views/Home'], resolve)
-const About = resolve => require(['@/views/About'], resolve)
 const Compress = resolve => require(['@/views/Compress'], resolve)
-const CompressHelp = resolve => require(['@/views/CompressHelp'], resolve)
 const Size = resolve => require(['@/views/Size'], resolve)
 const Round = resolve => require(['@/views/Round'], resolve)
 const Border = resolve => require(['@/views/Border'], resolve)
 const Color = resolve => require(['@/views/Color'], resolve)
-const ColorHelp = resolve => require(['@/views/ColorHelp'], resolve)
 const Format = resolve => require(['@/views/Format'], resolve)
-const FormatHelp = resolve => require(['@/views/FormatHelp'], resolve)
 const Watermark = resolve => require(['@/views/Watermark'], resolve)
 const IdCardWatermark = resolve => require(['@/views/IdCardWatermark'], resolve)
-const IdCardWatermarkHelp = resolve => require(['@/views/IdCardWatermarkHelp'], resolve)
 const Split = resolve => require(['@/views/Split'], resolve)
-const SplitHelp = resolve => require(['@/views/SplitHelp'], resolve)
 const Join = resolve => require(['@/views/Join'], resolve)
-const JoinHelp = resolve => require(['@/views/JoinHelp'], resolve)
 const Temp = resolve => require(['@/views/Temp'], resolve)
-const TempHelp = resolve => require(['@/views/TempHelp'], resolve)
 const Mosaic = resolve => require(['@/views/Mosaic'], resolve)
-const MosaicHelp = resolve => require(['@/views/MosaicHelp'], resolve)
 const Base64 = resolve => require(['@/views/Base64'], resolve)
-const Base64Help = resolve => require(['@/views/Base64Help'], resolve)
 const Glitch = resolve => require(['@/views/Glitch'], resolve)
 const Blending = resolve => require(['@/views/Blending'], resolve)
-const Help = resolve => require(['@/views/Help'], resolve)
 const Error404 = resolve => require(['@/views/error/Error404'], resolve)
 
 Vue.use(Router)
@@ -40,10 +29,6 @@ let routes = [
     {
         path: '/compress',
         component: Compress
-    },
-    {
-        path: '/compress/help',
-        component: CompressHelp
     },
     {
         path: '/size',
@@ -66,64 +51,32 @@ let routes = [
         component: IdCardWatermark
     },
     {
-        path: '/watermark/idCard/help',
-        component: IdCardWatermarkHelp
-    },
-    {
         path: '/format',
         component: Format
-    },
-    {
-        path: '/format/help',
-        component: FormatHelp
     },
     {
         path: '/color',
         component: Color
     },
     {
-        path: '/color/help',
-        component: ColorHelp
-    },
-    {
         path: '/split',
         component: Split
-    },
-    {
-        path: '/split/help',
-        component: SplitHelp
     },
     {
         path: '/join',
         component: Join
     },
     {
-        path: '/join/help',
-        component: JoinHelp
-    },
-    {
         path: '/temp',
         component: Temp
-    },
-    {
-        path: '/temp/help',
-        component: TempHelp
     },
     {
         path: '/mosaic',
         component: Mosaic
     },
     {
-        path: '/mosaic/help',
-        component: MosaicHelp
-    },
-    {
         path: '/base64',
         component: Base64
-    },
-    {
-        path: '/base64/help',
-        component: Base64Help
     },
     {
         path: '/glitch',
@@ -132,14 +85,6 @@ let routes = [
     {
         path: '/blending',
         component: Blending
-    },
-    {
-        path: '/about',
-        component: About
-    },
-    {
-        path: '/help',
-        component: Help
     },
     {
         path: '*',

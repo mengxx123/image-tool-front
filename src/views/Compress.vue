@@ -42,7 +42,8 @@
                         {
                             type: 'icon',
                             icon: 'help',
-                            to: '/compress/help'
+                            href: 'https://project.yunser.com/products/4b971b300d1111e9be41f39928385642',
+                            target: '_blank'
                         }
                     ]
                 }

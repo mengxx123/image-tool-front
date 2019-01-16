@@ -45,6 +45,12 @@
                     menu: [
                         {
                             type: 'icon',
+                            icon: 'help',
+                            href: 'https://project.yunser.com/products/6a52fab00d1811e9be41f39928385642',
+                            target: '_blank'
+                        },
+                        {
+                            type: 'icon',
                             icon: 'all_inclusive',
                             click: this.link,
                             title: '用其他应用打开'

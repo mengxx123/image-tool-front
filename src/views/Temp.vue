@@ -48,7 +48,8 @@
                         {
                             type: 'icon',
                             icon: 'help',
-                            to: '/temp/help'
+                            href: 'https://project.yunser.com/products/6e31a6600d1611e9be41f39928385642',
+                            target: '_blank'
                         }
                     ]
                 }

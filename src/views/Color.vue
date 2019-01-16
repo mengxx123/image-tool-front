@@ -69,7 +69,8 @@
                         {
                             type: 'icon',
                             icon: 'help',
-                            to: '/color/help'
+                            href: 'https://project.yunser.com/products/08df11c00d1211e9be41f39928385642',
+                            target: '_blank'
                         }
                     ]
                 }

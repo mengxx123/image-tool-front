@@ -188,7 +188,8 @@
                         {
                             type: 'icon',
                             icon: 'help',
-                            to: '/watermark/idCard/help'
+                            href: 'https://project.yunser.com/products/dcfaacb00d1911e9be41f39928385642',
+                            target: '_blank'
                         }
                     ]
                 }

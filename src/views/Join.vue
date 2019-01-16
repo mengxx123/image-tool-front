@@ -122,7 +122,8 @@
                         {
                             type: 'icon',
                             icon: 'help',
-                            to: '/join/help'
+                            href: 'https://project.yunser.com/products/e1758dd00d1611e9be41f39928385642',
+                            target: '_blank'
                         }
                     ]
                 }

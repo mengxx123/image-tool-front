@@ -59,7 +59,8 @@
                         {
                             type: 'icon',
                             icon: 'help',
-                            to: '/split/help'
+                            href: 'https://project.yunser.com/products/cec25f700d1511e9be41f39928385642',
+                            target: '_blank'
                         }
                     ]
                 }

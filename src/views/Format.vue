@@ -40,7 +40,8 @@
                         {
                             type: 'icon',
                             icon: 'help',
-                            to: '/format/help'
+                            href: 'https://project.yunser.com/products/6dfdbdc00d1911e9be41f39928385642',
+                            target: '_blank'
                         }
                     ]
                 }
