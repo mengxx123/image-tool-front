@@ -1,28 +1,30 @@
 <template>
     <my-page title="抖音风格的文字生成器" :page="page">
-        <div class="tip">建议先下载站酷高端黑字体安装到电脑再使用，电脑右键另存为保存图片。</div>
-        <div class="preview" id="preview"></div>
-            <div id="edit">
-            <div class="option">
-                <ui-text-field v-model="options.text" label="文字" />
-            </div>
-            <div class="option">
-                <div class="title">字体大小</div>
-                <ui-slider class="slider" v-model="options.fontSize" :step="2" :min="20" :max="200" label="121" />
-            </div>
-            <div class="option">
-                <div class="title">抖动幅度</div>
-                <ui-slider class="slider" v-model="options.speed" :step="2" :min="1" :max="100"/>
-            </div>
-            <div class="option">
-                <ui-checkbox v-model="options.divider" label="切割线" class="demo-checkbox"/> 
-            </div>
-            <div class="option">
-                <br>
-                <div class="title">图片格式</div>
-                <ui-radio v-model="options.type" label="PNG" name="group" nativeValue="png" class="demo-radio"/>
-                <br>
-                <ui-radio v-model="options.type" label="GIF" name="group" nativeValue="gif"  class="demo-radio"/>
+        <div class="common-container container">
+            <div class="tip">建议先下载站酷高端黑字体安装到电脑再使用，电脑右键另存为保存图片。</div>
+            <div class="preview" id="preview"></div>
+                <div id="edit">
+                <div class="option">
+                    <ui-text-field v-model="options.text" label="文字" />
+                </div>
+                <div class="option">
+                    <div class="title">字体大小</div>
+                    <ui-slider class="slider" v-model="options.fontSize" :step="2" :min="20" :max="200" label="121" />
+                </div>
+                <div class="option">
+                    <div class="title">抖动幅度</div>
+                    <ui-slider class="slider" v-model="options.speed" :step="2" :min="1" :max="100"/>
+                </div>
+                <div class="option">
+                    <ui-checkbox v-model="options.divider" label="切割线" class="demo-checkbox"/> 
+                </div>
+                <div class="option">
+                    <br>
+                    <div class="title">图片格式</div>
+                    <ui-radio v-model="options.type" label="PNG" name="group" nativeValue="png" class="demo-radio"/>
+                    <br>
+                    <ui-radio v-model="options.type" label="GIF" name="group" nativeValue="gif"  class="demo-radio"/>
+                </div>
             </div>
         </div>
     </my-page>

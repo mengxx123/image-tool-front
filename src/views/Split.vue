@@ -1,39 +1,41 @@
 <template>
     <my-page title="图片分割" :page="page">
-        <ui-row>
-            <ui-raised-button class="file-select-btn" label="选择图片" primary>
-                <input type="file" class="ui-file-button" accept="image/*" @change="fileChange($event)">
-            </ui-raised-button>
-        </ui-row>
-        <div v-if="resultSrc">
+        <div class="common-container container">
             <ui-row>
-                <div class="img-box">
-                    <img id="img" :src="resultSrc">
-                    <canvas></canvas>
-                </div>
+                <ui-raised-button class="file-select-btn" label="选择图片" primary>
+                    <input type="file" class="ui-file-button" accept="image/*" @change="fileChange($event)">
+                </ui-raised-button>
             </ui-row>
-            <ui-row>
-                <div>
-                    <ui-text-field v-model.number="row" label="行"/>
-                </div>
-                <div>
-                    <ui-text-field v-model.number="column" label="列"/>
-                </div>
-                <div>
-                    <ui-raised-button label="生成图片" secondary
-                                      @click="make"/>
-                </div>
-            </ui-row>
-            <ui-row>
-                <canvas id="canvas" style="display: none"></canvas>
-                <canvas id="canvas2" style="display: none"></canvas>
-                <ui-raised-button label="下载图片(.zip)" @click="download" v-if="results.length" />
-                <ul class="result-list">
-                    <li class="item" v-for="img in results">
-                        <img :src="img">
-                    </li>
-                </ul>
-            </ui-row>
+            <div v-if="resultSrc">
+                <ui-row>
+                    <div class="img-box">
+                        <img id="img" :src="resultSrc">
+                        <canvas></canvas>
+                    </div>
+                </ui-row>
+                <ui-row>
+                    <div>
+                        <ui-text-field v-model.number="row" label="行"/>
+                    </div>
+                    <div>
+                        <ui-text-field v-model.number="column" label="列"/>
+                    </div>
+                    <div>
+                        <ui-raised-button label="生成图片" secondary
+                                        @click="make"/>
+                    </div>
+                </ui-row>
+                <ui-row>
+                    <canvas id="canvas" style="display: none"></canvas>
+                    <canvas id="canvas2" style="display: none"></canvas>
+                    <ui-raised-button label="下载图片(.zip)" @click="download" v-if="results.length" />
+                    <ul class="result-list">
+                        <li class="item" v-for="img in results">
+                            <img :src="img">
+                        </li>
+                    </ul>
+                </ui-row>
+            </div>
         </div>
     </my-page>
 </template>

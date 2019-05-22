@@ -1,21 +1,23 @@
 <template>
     <my-page title="图片⇆Base64" :page="page">
-        <ui-row>
-            <ui-raised-button class="file-select-btn" label="选择图片" primary>
-                <input type="file" class="ui-file-button" accept="image/*" @change="fileChange($event)">
-            </ui-raised-button>
-        </ui-row>
-        <ui-row>
-            <section class="bezier-box">
-                <img class="preview-img" :src="src" v-if="src">
-                <div>{{ size }}</div>
-            </section>
-        </ui-row>
-        <ui-row>
-            <ui-text-field class="textarea" v-model="code" hintText="可以在这里输入base64，转换成图片" multiLine :rows="6" :rowsMax="6"/>
-            <br>
-            <ui-raised-button label="转换为图片" @click="toImage" />
-        </ui-row>
+        <div class="common-container container">
+            <ui-row>
+                <ui-raised-button class="file-select-btn" label="选择图片" primary>
+                    <input type="file" class="ui-file-button" accept="image/*" @change="fileChange($event)">
+                </ui-raised-button>
+            </ui-row>
+            <ui-row>
+                <section class="bezier-box">
+                    <img class="preview-img" :src="src" v-if="src">
+                    <div>{{ size }}</div>
+                </section>
+            </ui-row>
+            <ui-row>
+                <ui-text-field class="textarea" v-model="code" hintText="可以在这里输入base64，转换成图片" multiLine :rows="6" :rowsMax="6"/>
+                <br>
+                <ui-raised-button label="转换为图片" @click="toImage" />
+            </ui-row>
+        </div>
     </my-page>
 </template>
 

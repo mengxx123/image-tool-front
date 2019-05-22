@@ -1,13 +1,18 @@
 @import "./var";
 @import "./color";
 
-.ui-page-body {
-    -webkit-overflow-scrolling : touch;
+.common-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 16px 16px 80px 16px;
 }
-input,
-textarea {
-  -webkit-appearance: none;
-}
+// .ui-page-body {
+//     -webkit-overflow-scrolling : touch;
+// }
+// input,
+// textarea {
+//   -webkit-appearance: none;
+// }
 .ui-file-button{
     position: absolute;
     left: 0;

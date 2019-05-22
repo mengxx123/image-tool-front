@@ -1,6 +1,6 @@
 <template>
     <my-page title="图片压缩" :page="page">
-        <div>
+        <div class="common-container container">
             <!--<div class="setting">
                 <h2 class="setting-title">设置</h2>
                 小于<input v-model.number="minSize">K的图片不压缩

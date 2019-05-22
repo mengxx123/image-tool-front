@@ -1,26 +1,28 @@
 <template>
     <my-page title="马赛克" :page="page">
-        <!--<div class="thumb">-->
-            <!--<img src="/static/img/2.jpg" id="dolly1" />-->
-        <!--</div>-->
-        <div class="empty-box" v-if="!resultSrc">
-            <div class="text">请选择图片进行编辑</div>
+        <div class="common-container container">
+            <!--<div class="thumb">-->
+                <!--<img src="/static/img/2.jpg" id="dolly1" />-->
+            <!--</div>-->
+            <div class="empty-box" v-if="!resultSrc">
+                <div class="text">请选择图片进行编辑</div>
+            </div>
+            <div v-if="resultSrc">
+                <ui-row>
+                    <ui-select-field v-model="shape" label="样式">
+                        <ui-menu-item value="square" title="正方形"/>
+                        <ui-menu-item value="circle" title="圆形"/>
+                        <ui-menu-item value="diamond" title="方块"/>
+                    </ui-select-field>
+                </ui-row>
+                <ui-slider class="slider" v-model="grid" :min="4" :max="100" :step="2" />
+                <ui-row>
+                    <img id="img" :src="resultSrc">
+                </ui-row>
+                <ui-raised-button class="btn" label="下载" @click="download" />
+            </div>
+            <saver :show.sync="saverVisible" :src="downloadSrc" />
         </div>
-        <div v-if="resultSrc">
-            <ui-row>
-                <ui-select-field v-model="shape" label="样式">
-                    <ui-menu-item value="square" title="正方形"/>
-                    <ui-menu-item value="circle" title="圆形"/>
-                    <ui-menu-item value="diamond" title="方块"/>
-                </ui-select-field>
-            </ui-row>
-            <ui-slider class="slider" v-model="grid" :min="4" :max="100" :step="2" />
-            <ui-row>
-                <img id="img" :src="resultSrc">
-            </ui-row>
-            <ui-raised-button class="btn" label="下载" @click="download" />
-        </div>
-        <saver :show.sync="saverVisible" :src="downloadSrc" />
         <image-uploader @data="onData" />
     </my-page>
 </template>

@@ -1,20 +1,22 @@
 <template>
     <my-page title="格式转化" :page="page">
-        <div class="empty-box" v-if="!resultSrc">
-            <div class="text">请选择图片进行编辑</div>
-        </div>
-        <div v-if="resultSrc">
-            <ui-row>
-                <img id="img" :src="resultSrc" style="display: none">
-                <canvas class="canvas" id="canvas"></canvas>
-            </ui-row>
-            <ui-row>
-                <div>
-                    <ui-raised-button label="PNG 下载" secondary @click="downloadPng"/>
-                    <ui-raised-button label="JPG 下载" secondary @click="downloadJpg"/>
-                    <ui-raised-button label="WebP 下载" secondary @click="downloadWebP"/>
-                </div>
-            </ui-row>
+        <div class="common-container container">
+            <div class="empty-box" v-if="!resultSrc">
+                <div class="text">请选择图片进行编辑</div>
+            </div>
+            <div v-if="resultSrc">
+                <ui-row>
+                    <img id="img" :src="resultSrc" style="display: none">
+                    <canvas class="canvas" id="canvas"></canvas>
+                </ui-row>
+                <ui-row>
+                    <div>
+                        <ui-raised-button label="PNG 下载" secondary @click="downloadPng"/>
+                        <ui-raised-button label="JPG 下载" secondary @click="downloadJpg"/>
+                        <ui-raised-button label="WebP 下载" secondary @click="downloadWebP"/>
+                    </div>
+                </ui-row>
+            </div>
         </div>
         <image-uploader @data="onData" />
     </my-page>

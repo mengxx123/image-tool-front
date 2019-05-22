@@ -1,35 +1,37 @@
 <template>
     <my-page title="图片取色" :page="page">
-        <div class="form">
-            <ui-raised-button class="file-select-btn" label="选择图片" primary>
-                <input type="file" class="ui-file-button" accept="image/*" @change="fileChange($event)">
-            </ui-raised-button>
-            <div class="or">或</div>
-            <ui-text-field v-model="url" hintText="请输入图片网址" />
-            <br>
-            <ui-raised-button class="file-select-btn" label="加载地址" @click="loadUrl" />
-            <ui-raised-button label="列出所有颜色" class="demo-raised-button" secondary
-                              v-if="resultSrc"
-                              @click="getColor"/>
-            <ui-checkbox class="checkbox" v-model="checkbox"
-                         v-if="resultSrc"
-                         label="是否省略相近颜色" />
-        </div>
-        <div v-if="resultSrc">
-            <ui-row>
-                <img id="pic" :src="resultSrc" @click="getClickColor($event)">
-            </ui-row>
-            <ui-row>
-                <ul class="color-list" v-if="colors.length">
-                    <li class="item clipboard-btn" v-for="color in colors" :data-clipboard-text="color">
-                        <span class="color" :style="{'background-color': color}">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        {{ color }}
-                        <!--<button class="clipboard-btn" >-->
-                            <!---->
-                        <!--</button>-->
-                    </li>
-                </ul>
-            </ui-row>
+        <div class="common-container container">
+            <div class="form">
+                <ui-raised-button class="file-select-btn" label="选择图片" primary>
+                    <input type="file" class="ui-file-button" accept="image/*" @change="fileChange($event)">
+                </ui-raised-button>
+                <div class="or">或</div>
+                <ui-text-field v-model="url" hintText="请输入图片网址" />
+                <br>
+                <ui-raised-button class="file-select-btn" label="加载地址" @click="loadUrl" />
+                <ui-raised-button label="列出所有颜色" class="demo-raised-button" secondary
+                                v-if="resultSrc"
+                                @click="getColor"/>
+                <ui-checkbox class="checkbox" v-model="checkbox"
+                            v-if="resultSrc"
+                            label="是否省略相近颜色" />
+            </div>
+            <div v-if="resultSrc">
+                <ui-row>
+                    <img id="pic" :src="resultSrc" @click="getClickColor($event)">
+                </ui-row>
+                <ui-row>
+                    <ul class="color-list" v-if="colors.length">
+                        <li class="item clipboard-btn" v-for="color in colors" :data-clipboard-text="color">
+                            <span class="color" :style="{'background-color': color}">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            {{ color }}
+                            <!--<button class="clipboard-btn" >-->
+                                <!---->
+                            <!--</button>-->
+                        </li>
+                    </ul>
+                </ui-row>
+            </div>
         </div>
     </my-page>
 </template>

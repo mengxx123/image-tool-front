@@ -1,32 +1,34 @@
 <template>
     <my-page title="占位图片" :page="page">
-        <ui-row>
-            <div>
-                <ui-text-field v-model.number="width" label="宽"/>
-            </div>
-            <div>
-                <ui-text-field v-model.number="height" label="高"/>
-            </div>
-            <div>
-                <ui-text-field v-model="text" label="文字"/>
-            </div>
-            <div>
-                <ui-text-field v-model="color" label="文字颜色"/>
-            </div>
-            <div>
-                <ui-text-field v-model="bgColor" label="背景颜色"/>
-            </div>
-            
-            <div>
-                <ui-raised-button class="btn-copy" label="复制链接" :data-clipboard-text="imgSrc"/>
-            </div>
-        </ui-row>
-        <ui-row>
-            <div class="url">
-                &lt;img src="{{ imgSrc }}"&gt;
-            </div>
-            <img :src="imgSrc">
-        </ui-row>
+        <div class="common-container container">
+            <ui-row>
+                <div>
+                    <ui-text-field v-model.number="width" label="宽"/>
+                </div>
+                <div>
+                    <ui-text-field v-model.number="height" label="高"/>
+                </div>
+                <div>
+                    <ui-text-field v-model="text" label="文字"/>
+                </div>
+                <div>
+                    <ui-text-field v-model="color" label="文字颜色"/>
+                </div>
+                <div>
+                    <ui-text-field v-model="bgColor" label="背景颜色"/>
+                </div>
+                
+                <div>
+                    <ui-raised-button class="btn-copy" label="复制链接" :data-clipboard-text="imgSrc"/>
+                </div>
+            </ui-row>
+            <ui-row>
+                <div class="url">
+                    &lt;img src="{{ imgSrc }}"&gt;
+                </div>
+                <img :src="imgSrc">
+            </ui-row>
+        </div>
     </my-page>
 </template>
 

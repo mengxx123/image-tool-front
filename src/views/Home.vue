@@ -1,18 +1,7 @@
 <template>
     <my-page title="图片工具" :page="page">
-        <app-list :data="groups" />
-        <div class="tool-list">
-            <div class="mu-paper list-item mu-paper-round mu-paper-1" 
-                v-for="app in apps">
-                <router-link class="link" :to="app.to">
-                    <img :src="app.icon" class="img">
-                    <div class="info">
-                        <h3 class="text">{{ app.name }}</h3>
-                        <div class="desc">{{ app.desc }}</div>
-                    </div>
-                    <i class="icon icon-heart"></i>
-                </router-link>
-            </div>
+        <div class="common-container container">
+            <app-list :data="groups" />
         </div>
     </my-page>
 </template>

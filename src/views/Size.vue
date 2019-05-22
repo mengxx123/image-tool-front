@@ -1,32 +1,34 @@
 <template>
     <my-page title="修改图片大小" :page="page">
-        <div class="empty-box" v-if="!resultVisible">
-            <div class="text">请选择图片进行编辑，支持批量操作</div>
-        </div>
-        <div v-if="resultVisible">
-            <ui-row v-if="data.length === 1">
-                <img id="img" :src="resultSrc">
-            </ui-row>
-            <div v-else>多张图片，暂不支持预览效果</div>
-            <ui-row>
-                <div>
-                    <ui-text-field v-model.number="newWidth" hintText="宽"/>
-                </div>
-                <div>
-                    <ui-text-field v-model.number="newHeight" hintText="高"/>
-                </div>
-                <div>
-                    <ui-checkbox class="checkbox" v-model="constraintRatio" label="约束长宽比"/>
-                </div>
-                <div>
-                    <ui-raised-button label="下载图片" secondary
-                                      @click="make"/>
-                </div>
-            </ui-row>
-            <ui-row>
-                <canvas id="canvas" style="display: none"></canvas>
-                <img :src="resultImage" v-if="resultImage">
-            </ui-row>
+        <div class="common-container container">
+            <div class="empty-box" v-if="!resultVisible">
+                <div class="text">请选择图片进行编辑，支持批量操作</div>
+            </div>
+            <div v-if="resultVisible">
+                <ui-row v-if="data.length === 1">
+                    <img id="img" :src="resultSrc">
+                </ui-row>
+                <div v-else>多张图片，暂不支持预览效果</div>
+                <ui-row>
+                    <div>
+                        <ui-text-field v-model.number="newWidth" hintText="宽"/>
+                    </div>
+                    <div>
+                        <ui-text-field v-model.number="newHeight" hintText="高"/>
+                    </div>
+                    <div>
+                        <ui-checkbox class="checkbox" v-model="constraintRatio" label="约束长宽比"/>
+                    </div>
+                    <div>
+                        <ui-raised-button label="下载图片" secondary
+                                        @click="make"/>
+                    </div>
+                </ui-row>
+                <ui-row>
+                    <canvas id="canvas" style="display: none"></canvas>
+                    <img :src="resultImage" v-if="resultImage">
+                </ui-row>
+            </div>
         </div>
         <!--<ui-float-button class="float-button" icon="file_upload" @click="uploadFile" title="上传图片"/>-->
         <image-uploader @data="onData" />

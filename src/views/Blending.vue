@@ -1,69 +1,71 @@
 <template>
     <my-page title="图像融合" :page="page">
-        <div id="wrapper">
-            <div id="front">
-                <!-- This app is beta release. Size of image will automatically be 150x150 pixels. -->
-                <div id="file-select" class="clearfix">
-                <div>
-                    <h3>1. 选择 <span class="strong">基准图片</span></h3>
-                    <input type="file" id="base-file" /><br /><br />
-                    <output id="base-img"></output>
-                </div>
-                <div>
-                    <h3>2. 选择 <span class="strong">要融合的图片
-                        <!-- Blend Source Image -->
-                        </span></h3>
-                    <input type="file" id="src-file" /><br /><br />
-                    <output id="src-img"></output>
-                </div>
-                </div><!-- /file-select -->
-                <button id="start-app">开始</button>
-            </div><!-- /front -->
-            <div id="app2">
-                <div id="canvases" class="clearfix">
-                <div>
-                    <span class="strong">基本图形</span><br />
-                    <canvas id="base-canvas" height="150" width="150"></canvas>
-                </div>
-                <div>
-                    <span class="strong">要混合的图像</span><br />
-                    <canvas id="src-canvas" height="150" width="150"></canvas>
-                </div>
-                </div><!-- /canvases -->
-                <div id="steps" class="clearfix">
-                <div>
-                    <h3>第一步</h3>
-                    选择渐变。<br /><br />
-                    <span class="strong">渐变</span>:
-                    <label><input id="importing" type="radio" name="gradients" checked>Importing</label>
-                    <label><input id="mixing" type="radio" name="gradients">Mixing</label>
-                </div>
-                <div>
-                    <h3>第二步</h3>
-                    &#8595; 绘制遮罩区域。 <br />
-                    <canvas id="mask-canvas" height="150" width="150"></canvas><br />
-                    完成后，点击
-                    <button id="adjustBlendPosition" name="adjustBtn">这里</button>.
-                </div>
-                <div>
-                    <h3>第三步</h3>
-                    <canvas id="result-canvas" height="150" width="150"></canvas><br />
-                    调整混合位置：
-                    <button id="up" name="directionBtn">&#8593;</button>
-                    <button id="right" name="directionBtn">&#8594;</button>
-                    <button id="down" name="directionBtn">&#8595;</button>
-                    <button id="left" name="directionBtn">&#8592;</button>
-                    <br />
-                    <button id="blendImages" name="blendBtn" >好了，开始混合</button>
-                </div>
-                </div><!-- /steps -->
-                <div id="footer">
-                <button id="initializeCanvas" name="resetBtn" >重置所有画布</button>
-                <button id="reload" name="pageReloadBtn" >重新选择图像</button>
-                <button id="saveResult" name="saveBtn">保存混合后的图像</button><br />
-                </div>
-            </div><!-- /app -->
-            </div><!-- /wrapper -->
+        <div class="common-container container">
+            <div id="wrapper">
+                <div id="front">
+                    <!-- This app is beta release. Size of image will automatically be 150x150 pixels. -->
+                    <div id="file-select" class="clearfix">
+                    <div>
+                        <h3>1. 选择 <span class="strong">基准图片</span></h3>
+                        <input type="file" id="base-file" /><br /><br />
+                        <output id="base-img"></output>
+                    </div>
+                    <div>
+                        <h3>2. 选择 <span class="strong">要融合的图片
+                            <!-- Blend Source Image -->
+                            </span></h3>
+                        <input type="file" id="src-file" /><br /><br />
+                        <output id="src-img"></output>
+                    </div>
+                    </div><!-- /file-select -->
+                    <button id="start-app">开始</button>
+                </div><!-- /front -->
+                <div id="app2">
+                    <div id="canvases" class="clearfix">
+                    <div>
+                        <span class="strong">基本图形</span><br />
+                        <canvas id="base-canvas" height="150" width="150"></canvas>
+                    </div>
+                    <div>
+                        <span class="strong">要混合的图像</span><br />
+                        <canvas id="src-canvas" height="150" width="150"></canvas>
+                    </div>
+                    </div><!-- /canvases -->
+                    <div id="steps" class="clearfix">
+                    <div>
+                        <h3>第一步</h3>
+                        选择渐变。<br /><br />
+                        <span class="strong">渐变</span>:
+                        <label><input id="importing" type="radio" name="gradients" checked>Importing</label>
+                        <label><input id="mixing" type="radio" name="gradients">Mixing</label>
+                    </div>
+                    <div>
+                        <h3>第二步</h3>
+                        &#8595; 绘制遮罩区域。 <br />
+                        <canvas id="mask-canvas" height="150" width="150"></canvas><br />
+                        完成后，点击
+                        <button id="adjustBlendPosition" name="adjustBtn">这里</button>.
+                    </div>
+                    <div>
+                        <h3>第三步</h3>
+                        <canvas id="result-canvas" height="150" width="150"></canvas><br />
+                        调整混合位置：
+                        <button id="up" name="directionBtn">&#8593;</button>
+                        <button id="right" name="directionBtn">&#8594;</button>
+                        <button id="down" name="directionBtn">&#8595;</button>
+                        <button id="left" name="directionBtn">&#8592;</button>
+                        <br />
+                        <button id="blendImages" name="blendBtn" >好了，开始混合</button>
+                    </div>
+                    </div><!-- /steps -->
+                    <div id="footer">
+                    <button id="initializeCanvas" name="resetBtn" >重置所有画布</button>
+                    <button id="reload" name="pageReloadBtn" >重新选择图像</button>
+                    <button id="saveResult" name="saveBtn">保存混合后的图像</button><br />
+                    </div>
+                </div><!-- /app -->
+                </div><!-- /wrapper -->
+        </div>
     </my-page>
 </template>
 

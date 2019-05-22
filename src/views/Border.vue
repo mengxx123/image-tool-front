@@ -1,38 +1,41 @@
 <template>
     <my-page title="图像加边框">
-        <!-- <ui-row>
-            <ui-raised-button class="file-select-btn" label="选择图片" primary>
-                <input type="file" class="ui-file-button" accept="image/*" @change="fileChange($event)">
-            </ui-raised-button>
-        </ui-row> -->
-        <div class="empty-box" v-if="!resultSrc">
-            <div class="text">请选择图片进行编辑</div>
+        <div class="common-container container">
+            <!-- <ui-row>
+                <ui-raised-button class="file-select-btn" label="选择图片" primary>
+                    <input type="file" class="ui-file-button" accept="image/*" @change="fileChange($event)">
+                </ui-raised-button>
+            </ui-row> -->
+            <div class="empty-box" v-if="!resultSrc">
+                <div class="text">请选择图片进行编辑</div>
+            </div>
+            <div v-if="resultSrc">
+                <ui-row>
+                    <img id="img" :src="resultSrc">
+                </ui-row>
+                <ui-row>
+                    <div>
+                        <ui-text-field v-model.number="options.borderWidth" type="number" label="边框宽度"/>
+                    </div>
+                    <div>
+                        <!-- <ui-text-field v-model="options.borderColor" label="边框颜色"/> -->
+                        <div>边框颜色</div>
+                        <color-picker v-model="options.borderColor" />
+                    </div>
+                    <div class="btns">
+                        <!-- <ui-raised-button class="btn" label="生成图片" secondary @click="make"/> -->
+                        <ui-raised-button class="btn" label="下载" primary @click="download" v-if="result"/>
+                        <!-- <ui-raised-button class="btn" label="边框样式" secondary @click="open = true" v-if="result"/> -->
+                    </div>
+                </ui-row>
+                <ui-row>
+                    <canvas id="canvas"></canvas>
+                </ui-row>
+            </div>
+            <saver :show.sync="saverVisible" :src="downloadSrc" />
+            <image-uploader v-if="embed" @data="onData" />
         </div>
-        <div v-if="resultSrc">
-            <ui-row>
-                <img id="img" :src="resultSrc">
-            </ui-row>
-            <ui-row>
-                <div>
-                    <ui-text-field v-model.number="options.borderWidth" type="number" label="边框宽度"/>
-                </div>
-                <div>
-                    <!-- <ui-text-field v-model="options.borderColor" label="边框颜色"/> -->
-                    <div>边框颜色</div>
-                    <color-picker v-model="options.borderColor" />
-                </div>
-                <div class="btns">
-                    <!-- <ui-raised-button class="btn" label="生成图片" secondary @click="make"/> -->
-                    <ui-raised-button class="btn" label="下载" primary @click="download" v-if="result"/>
-                    <!-- <ui-raised-button class="btn" label="边框样式" secondary @click="open = true" v-if="result"/> -->
-                </div>
-            </ui-row>
-            <ui-row>
-                <canvas id="canvas"></canvas>
-            </ui-row>
-        </div>
-        <saver :show.sync="saverVisible" :src="downloadSrc" />
-        <image-uploader v-if="embed" @data="onData" />
+
         <ui-drawer right :open="open" :docked="false" @close="toggle()">
             <ui-appbar title="边框样式">
                 <ui-icon-button icon="close" slot="left" @click="open = false" />
